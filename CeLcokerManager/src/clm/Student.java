@@ -37,7 +37,7 @@ public class Student {
 		}
 	}
 	
-	public static void createStudent(int stdnum, String name, String id, String password) {
+	public static void createStudent(String stdnum, String name, String id, String password) {
 		try {
 			Connection con = getConnection();
 			PreparedStatement insert = con.prepareStatement(""

@@ -28,6 +28,8 @@ import javax.swing.JSpinner;
 import javax.swing.JSpinner.DateEditor;
 import java.awt.CardLayout;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
@@ -37,10 +39,10 @@ public class Login{
 
 	private JFrame frmCelockermanager;
 	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField pass;
+	private JTextField id;
+	private JTextField name;
+	private JTextField stdnum;
 	private JPasswordField passwordField;
 	private JTable table;
 	private JTable table_1;
@@ -133,6 +135,8 @@ public class Login{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		Student student = new Student();
+		Locker locker = new Locker();
 		frmCelockermanager = new JFrame();
 		frmCelockermanager.setTitle("CeLockerManager");
 		frmCelockermanager.setResizable(false);
@@ -211,6 +215,14 @@ public class Login{
 				JButton btnSignup = new JButton("\uD68C\uC6D0\uAC00\uC785");
 				btnSignup.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						String idTxt = id.getText();
+						String passTxt = pass.getText();
+						String nameTxt = name.getText();
+						String stdnumTxt = stdnum.getText();
+						
+						Student.createStudent(stdnumTxt, nameTxt, idTxt, passTxt);
+						JOptionPane.showMessageDialog(null, "회인가입이 완료되었습니다. ");
+						
 						CardLayout c=(CardLayout)(panel_1.getLayout());
 						c.show(panel_1, "로그인");
 					}
@@ -228,15 +240,15 @@ public class Login{
 				btnCancle.setBounds(559, 510, 202, 71);
 				signupPage.add(btnCancle);
 				
-				textField_2 = new JTextField();
-				textField_2.setColumns(10);
-				textField_2.setBounds(431, 283, 355, 36);
-				signupPage.add(textField_2);
+				pass = new JTextField();
+				pass.setColumns(10);
+				pass.setBounds(431, 283, 355, 36);
+				signupPage.add(pass);
 				
-				textField_3 = new JTextField();
-				textField_3.setColumns(10);
-				textField_3.setBounds(431, 235, 355, 36);
-				signupPage.add(textField_3);
+				id = new JTextField();
+				id.setColumns(10);
+				id.setBounds(431, 235, 355, 36);
+				signupPage.add(id);
 				
 				JLabel label = new JLabel("ID");
 				label.setBounds(303, 235, 90, 18);
@@ -246,15 +258,15 @@ public class Login{
 				label_1.setBounds(303, 283, 102, 18);
 				signupPage.add(label_1);
 				
-				textField_4 = new JTextField();
-				textField_4.setColumns(10);
-				textField_4.setBounds(431, 331, 355, 36);
-				signupPage.add(textField_4);
+				name = new JTextField();
+				name.setColumns(10);
+				name.setBounds(431, 331, 355, 36);
+				signupPage.add(name);
 				
-				textField_5 = new JTextField();
-				textField_5.setColumns(10);
-				textField_5.setBounds(431, 385, 355, 36);
-				signupPage.add(textField_5);
+				stdnum = new JTextField();
+				stdnum.setColumns(10);
+				stdnum.setBounds(431, 385, 355, 36);
+				signupPage.add(stdnum);
 				
 				JLabel label_2 = new JLabel("\uC774\uB984");
 				label_2.setBounds(303, 340, 102, 18);
@@ -304,7 +316,7 @@ public class Login{
 		button_4.setBounds(777, 673, 296, 68);
 		mainPage.add(button_4);
 		
-		JLabel label_4 = new JLabel("\uC120\uD0DD\uD55C \uC0AC\uBB3C\uD568 \uC815\uBCF4");
+		JLabel label_4 = new JLabel("\uD604\uC7AC \uC0AC\uBB3C\uD568 \uC815\uBCF4");
 		label_4.setBounds(14, 532, 185, 18);
 		mainPage.add(label_4);
 		
@@ -328,24 +340,229 @@ public class Login{
 		lockerOne.setBounds(14, 12, 35, 42);
 		panel.add(lockerOne);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setToolTipText("Click this button to make something happen.");
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				
-			}
-		});
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton_1.setBounds(61, 107, 105, 27);
-		panel.add(btnNewButton_1);
+		JToggleButton toggleButton = new JToggleButton("0");
+		toggleButton.setToolTipText("01");
+		toggleButton.setBounds(49, 12, 35, 42);
+		panel.add(toggleButton);
+		
+		JToggleButton toggleButton_1 = new JToggleButton("0");
+		toggleButton_1.setToolTipText("01");
+		toggleButton_1.setBounds(85, 12, 35, 42);
+		panel.add(toggleButton_1);
+		
+		JToggleButton toggleButton_2 = new JToggleButton("0");
+		toggleButton_2.setToolTipText("01");
+		toggleButton_2.setBounds(121, 12, 35, 42);
+		panel.add(toggleButton_2);
+		
+		JToggleButton toggleButton_3 = new JToggleButton("0");
+		toggleButton_3.setToolTipText("01");
+		toggleButton_3.setBounds(157, 12, 35, 42);
+		panel.add(toggleButton_3);
+		
+		JToggleButton toggleButton_4 = new JToggleButton("0");
+		toggleButton_4.setToolTipText("01");
+		toggleButton_4.setBounds(14, 54, 35, 42);
+		panel.add(toggleButton_4);
+		
+		JToggleButton toggleButton_5 = new JToggleButton("0");
+		toggleButton_5.setToolTipText("01");
+		toggleButton_5.setBounds(49, 54, 35, 42);
+		panel.add(toggleButton_5);
+		
+		JToggleButton toggleButton_6 = new JToggleButton("0");
+		toggleButton_6.setToolTipText("01");
+		toggleButton_6.setBounds(85, 54, 35, 42);
+		panel.add(toggleButton_6);
+		
+		JToggleButton toggleButton_7 = new JToggleButton("0");
+		toggleButton_7.setToolTipText("01");
+		toggleButton_7.setBounds(121, 54, 35, 42);
+		panel.add(toggleButton_7);
+		
+		JToggleButton toggleButton_8 = new JToggleButton("0");
+		toggleButton_8.setToolTipText("01");
+		toggleButton_8.setBounds(157, 54, 35, 42);
+		panel.add(toggleButton_8);
+		
+		JToggleButton toggleButton_9 = new JToggleButton("0");
+		toggleButton_9.setToolTipText("01");
+		toggleButton_9.setBounds(14, 96, 35, 42);
+		panel.add(toggleButton_9);
+		
+		JToggleButton toggleButton_10 = new JToggleButton("0");
+		toggleButton_10.setToolTipText("01");
+		toggleButton_10.setBounds(49, 96, 35, 42);
+		panel.add(toggleButton_10);
+		
+		JToggleButton toggleButton_11 = new JToggleButton("0");
+		toggleButton_11.setToolTipText("01");
+		toggleButton_11.setBounds(85, 96, 35, 42);
+		panel.add(toggleButton_11);
+		
+		JToggleButton toggleButton_12 = new JToggleButton("0");
+		toggleButton_12.setToolTipText("01");
+		toggleButton_12.setBounds(121, 96, 35, 42);
+		panel.add(toggleButton_12);
+		
+		JToggleButton toggleButton_13 = new JToggleButton("0");
+		toggleButton_13.setToolTipText("01");
+		toggleButton_13.setBounds(157, 96, 35, 42);
+		panel.add(toggleButton_13);
+		
+		JToggleButton toggleButton_14 = new JToggleButton("0");
+		toggleButton_14.setToolTipText("01");
+		toggleButton_14.setBounds(246, 12, 35, 42);
+		panel.add(toggleButton_14);
+		
+		JToggleButton toggleButton_15 = new JToggleButton("0");
+		toggleButton_15.setToolTipText("01");
+		toggleButton_15.setBounds(246, 54, 35, 42);
+		panel.add(toggleButton_15);
+		
+		JToggleButton toggleButton_16 = new JToggleButton("0");
+		toggleButton_16.setToolTipText("01");
+		toggleButton_16.setBounds(246, 96, 35, 42);
+		panel.add(toggleButton_16);
+		
+		JToggleButton toggleButton_17 = new JToggleButton("0");
+		toggleButton_17.setToolTipText("01");
+		toggleButton_17.setBounds(281, 96, 35, 42);
+		panel.add(toggleButton_17);
+		
+		JToggleButton toggleButton_18 = new JToggleButton("0");
+		toggleButton_18.setToolTipText("01");
+		toggleButton_18.setBounds(281, 54, 35, 42);
+		panel.add(toggleButton_18);
+		
+		JToggleButton toggleButton_19 = new JToggleButton("0");
+		toggleButton_19.setToolTipText("01");
+		toggleButton_19.setBounds(281, 12, 35, 42);
+		panel.add(toggleButton_19);
+		
+		JToggleButton toggleButton_20 = new JToggleButton("0");
+		toggleButton_20.setToolTipText("01");
+		toggleButton_20.setBounds(317, 12, 35, 42);
+		panel.add(toggleButton_20);
+		
+		JToggleButton toggleButton_21 = new JToggleButton("0");
+		toggleButton_21.setToolTipText("01");
+		toggleButton_21.setBounds(317, 54, 35, 42);
+		panel.add(toggleButton_21);
+		
+		JToggleButton toggleButton_22 = new JToggleButton("0");
+		toggleButton_22.setToolTipText("01");
+		toggleButton_22.setBounds(317, 96, 35, 42);
+		panel.add(toggleButton_22);
+		
+		JToggleButton toggleButton_23 = new JToggleButton("0");
+		toggleButton_23.setToolTipText("01");
+		toggleButton_23.setBounds(353, 96, 35, 42);
+		panel.add(toggleButton_23);
+		
+		JToggleButton toggleButton_24 = new JToggleButton("0");
+		toggleButton_24.setToolTipText("01");
+		toggleButton_24.setBounds(353, 54, 35, 42);
+		panel.add(toggleButton_24);
+		
+		JToggleButton toggleButton_25 = new JToggleButton("0");
+		toggleButton_25.setToolTipText("01");
+		toggleButton_25.setBounds(353, 12, 35, 42);
+		panel.add(toggleButton_25);
+		
+		JToggleButton toggleButton_26 = new JToggleButton("0");
+		toggleButton_26.setToolTipText("01");
+		toggleButton_26.setBounds(389, 12, 35, 42);
+		panel.add(toggleButton_26);
+		
+		JToggleButton toggleButton_27 = new JToggleButton("0");
+		toggleButton_27.setToolTipText("01");
+		toggleButton_27.setBounds(389, 54, 35, 42);
+		panel.add(toggleButton_27);
+		
+		JToggleButton toggleButton_28 = new JToggleButton("0");
+		toggleButton_28.setToolTipText("01");
+		toggleButton_28.setBounds(389, 96, 35, 42);
+		panel.add(toggleButton_28);
+		
+		JToggleButton toggleButton_29 = new JToggleButton("0");
+		toggleButton_29.setToolTipText("01");
+		toggleButton_29.setBounds(426, 12, 35, 42);
+		panel.add(toggleButton_29);
+		
+		JToggleButton toggleButton_30 = new JToggleButton("0");
+		toggleButton_30.setToolTipText("01");
+		toggleButton_30.setBounds(426, 54, 35, 42);
+		panel.add(toggleButton_30);
+		
+		JToggleButton toggleButton_31 = new JToggleButton("0");
+		toggleButton_31.setToolTipText("01");
+		toggleButton_31.setBounds(426, 96, 35, 42);
+		panel.add(toggleButton_31);
+		
+		JToggleButton toggleButton_32 = new JToggleButton("0");
+		toggleButton_32.setToolTipText("01");
+		toggleButton_32.setBounds(461, 96, 35, 42);
+		panel.add(toggleButton_32);
+		
+		JToggleButton toggleButton_33 = new JToggleButton("0");
+		toggleButton_33.setToolTipText("01");
+		toggleButton_33.setBounds(461, 54, 35, 42);
+		panel.add(toggleButton_33);
+		
+		JToggleButton toggleButton_34 = new JToggleButton("0");
+		toggleButton_34.setToolTipText("01");
+		toggleButton_34.setBounds(461, 12, 35, 42);
+		panel.add(toggleButton_34);
+		
+		JToggleButton toggleButton_35 = new JToggleButton("0");
+		toggleButton_35.setToolTipText("01");
+		toggleButton_35.setBounds(497, 12, 35, 42);
+		panel.add(toggleButton_35);
+		
+		JToggleButton toggleButton_36 = new JToggleButton("0");
+		toggleButton_36.setToolTipText("01");
+		toggleButton_36.setBounds(497, 54, 35, 42);
+		panel.add(toggleButton_36);
+		
+		JToggleButton toggleButton_37 = new JToggleButton("0");
+		toggleButton_37.setToolTipText("01");
+		toggleButton_37.setBounds(497, 96, 35, 42);
+		panel.add(toggleButton_37);
+		
+		JToggleButton toggleButton_38 = new JToggleButton("0");
+		toggleButton_38.setToolTipText("01");
+		toggleButton_38.setBounds(533, 96, 35, 42);
+		panel.add(toggleButton_38);
+		
+		JToggleButton toggleButton_39 = new JToggleButton("0");
+		toggleButton_39.setToolTipText("01");
+		toggleButton_39.setBounds(533, 54, 35, 42);
+		panel.add(toggleButton_39);
+		
+		JToggleButton toggleButton_40 = new JToggleButton("0");
+		toggleButton_40.setToolTipText("01");
+		toggleButton_40.setBounds(533, 12, 35, 42);
+		panel.add(toggleButton_40);
+		
+		JToggleButton toggleButton_41 = new JToggleButton("0");
+		toggleButton_41.setToolTipText("01");
+		toggleButton_41.setBounds(569, 12, 35, 42);
+		panel.add(toggleButton_41);
+		
+		JToggleButton toggleButton_42 = new JToggleButton("0");
+		toggleButton_42.setToolTipText("01");
+		toggleButton_42.setBounds(569, 54, 35, 42);
+		panel.add(toggleButton_42);
+		
+		JToggleButton toggleButton_43 = new JToggleButton("0");
+		toggleButton_43.setToolTipText("01");
+		toggleButton_43.setBounds(569, 96, 35, 42);
+		panel.add(toggleButton_43);
 		
 //		Connection conn = null;
 		
-		String[][] data = new String[][] {{"1","2","3","4","3"},{"5","6","7","8","1"},{"9","1","2","3","1"},{"4","5","6","7","2"}};
+		String[][] data = locker.getLockers();
 		String[] headers = new String[] {"lockernum", "state","borrower","startdate","enddate"};
 		
 		JScrollPane scrollPane_1 = new JScrollPane();

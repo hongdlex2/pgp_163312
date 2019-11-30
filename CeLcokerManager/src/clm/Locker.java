@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Locker {
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		getConnection();
 		
 		ArrayList<String> list = getLockers();
@@ -16,23 +16,34 @@ public class Locker {
 		}
 		
 	}
-	
-	public static ArrayList<String> getLockers(){
+*/	
+	public static String[][] getLockers(){
 		try {
 			Connection con = getConnection();
 			PreparedStatement statement = con.prepareStatement("Select lockernum, state, borrower, startdate, enddate FROM locker");
 			ResultSet results = statement.executeQuery();
-			ArrayList<String> list = new ArrayList<String>();
+			ArrayList<String[]> list = new ArrayList<String[]>();
 			while(results.next()) {
-				list.add("lockernum : " + results.getString("lockernum") + 
+				list.add(new String[]{
+					results.getString("lockernum"),
+					results.getString("state"),
+					results.getString("borrower"),
+					results.getString("startdate"),
+					results.getString("enddate")
+				});
+				
+				
+/*				list.add("lockernum : " + results.getString("lockernum") + 
 						" state " + results.getString("state") + 
 						" borrower " + results.getString("borrower") + 
 						" startdate " + results.getString("startdate") + 
 						" enddate " + results.getString("enddate") 
 						);
+*/	
 			}
-			System.out.println("회원정보를 불러왔습니다.");
-			return list;
+			System.out.println("사물함 정보를 불러왔습니다.");
+			String[][] arr = new String[list.size()][5];
+			return list.toArray(arr);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			return null;
