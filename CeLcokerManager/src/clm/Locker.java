@@ -7,16 +7,17 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Locker {
-/*	public static void main(String[] args) {
-		getConnection();
+	public static void main(String[] args) {
+//		getConnection();
 		
-		ArrayList<String> list = getLockers();
-		for(String item: list) {
-			System.out.println(item);
-		}
+//		ArrayList<String> list = getLockers();
+//		for(String item: list) {
+//			System.out.println(item);
+//		}
+		getLockerNum();
 		
 	}
-*/	
+	
 	public static String[][] getLockers(){
 		try {
 			Connection con = getConnection();
@@ -49,6 +50,30 @@ public class Locker {
 			return null;
 		}
 	}
+	
+	public static String[] getLockerNum() {
+		int cnt =0;
+		String[] rtn = new String[60];
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement("Select lockernum From locker");
+			ResultSet results = statement.executeQuery();
+			
+			while(results.next()) {
+				String lockerNumber = results.getString("lockernum");
+				rtn[cnt] = lockerNumber;
+				cnt = cnt+1;
+				System.out.println(lockerNumber);
+			}
+			return rtn;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rtn;
+		
+	}
+	
 	
 	public static Connection getConnection() {
 		try {
