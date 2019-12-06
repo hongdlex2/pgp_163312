@@ -1,5 +1,5 @@
 package clm;
-//test
+//
 import java.awt.EventQueue;
 import java.sql.*;
 import javax.swing.JFrame;
