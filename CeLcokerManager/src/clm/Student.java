@@ -17,6 +17,12 @@ public class Student {
 		
 	}
 	
+	
+//	public String getStdnum() {
+//		return stdnum;
+//	}
+	
+	
 	public static ArrayList<String> getStudents(){
 		try {
 			Connection con = getConnection();
