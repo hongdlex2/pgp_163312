@@ -14,7 +14,10 @@ public class Locker {
 //		for(String item: list) {
 //			System.out.println(item);
 //		}
-		getLockerNum();
+//		getLockerNum();
+		
+
+//		System.out.println(getLockerState(1));
 		
 	}
 	
@@ -51,6 +54,38 @@ public class Locker {
 			return null;
 		}
 	}
+	
+	public static int getLockerState(int num) {
+		String lent = "대여중";
+		try {
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement("Select state From locker Where lockernum="+num);
+			ResultSet results = statement.executeQuery();
+			
+			while(results.first()) {
+				String lockerState = results.getString("state");
+				System.out.println(lockerState);
+
+					if(lockerState.equals(lent)) {
+						System.out.println(lockerState);
+						System.out.println("리턴 1을 합니다.");
+						return 1;
+					} else {
+						System.out.println(lockerState);
+						System.out.println("리턴 0을 합니다.");
+						return 0;
+					}
+			}
+				
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+
+		}
+		return 2;
+	}
+	
 	
 	public static String[] getLockerNum() {
 		int cnt =0;
