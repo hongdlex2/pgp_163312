@@ -187,9 +187,12 @@ public class Login{
 						String pass = "tnghcjstk3";
 						
 						if(id.equals(txtID.getText())&&pass.equals(txtPass.getText())) {
+							JOptionPane.showMessageDialog(null,"로그인 성공");
 							txtID.setText("");
 							txtPass.setText("");
-							JOptionPane.showMessageDialog(null,"로그인 성공");
+							
+							
+							
 							CardLayout c=(CardLayout)(panel_1.getLayout());
 							c.show(panel_1, "메인");
 						} else {
@@ -363,102 +366,100 @@ public class Login{
 		mainPage.add(panel);
 		panel.setLayout(null);
 		
-		JToggleButton lockerOne = new JToggleButton("0");
-		lockerOne.setEnabled(false);
-		lockerOne.setToolTipText("01");
-		lockerOne.addMouseListener(new MouseAdapter() {
+		final JToggleButton locker1 = new JToggleButton("0");
+		locker1.setEnabled(false);
+		locker1.setToolTipText("01");
+		locker1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 			}
 		});
-		lockerOne.setBounds(14, 59, 35, 42);
-		panel.add(lockerOne);
+		locker1.setBounds(14, 59, 35, 42);
+		panel.add(locker1);
 		
-		JToggleButton toggleButton = new JToggleButton("0");
-		toggleButton.setEnabled(false);
-		toggleButton.setToolTipText("01");
-		toggleButton.setBounds(49, 59, 35, 42);
-		panel.add(toggleButton);
+		final JToggleButton locker2 = new JToggleButton("0");
+		locker2.setEnabled(false);
+		locker2.setToolTipText("01");
+		locker2.setBounds(49, 59, 35, 42);
+		panel.add(locker2);
 		
-		JToggleButton toggleButton_1 = new JToggleButton("0");
-		toggleButton_1.setEnabled(false);
-		toggleButton_1.setToolTipText("01");
-		toggleButton_1.setBounds(85, 59, 35, 42);
-		panel.add(toggleButton_1);
+		final JToggleButton locker3 = new JToggleButton("0");
+		locker3.setEnabled(false);
+		locker3.setToolTipText("01");
+		locker3.setBounds(85, 59, 35, 42);
+		panel.add(locker3);
 		
-		JToggleButton toggleButton_2 = new JToggleButton("0");
-		toggleButton_2.setEnabled(false);
-		toggleButton_2.setToolTipText("01");
-		toggleButton_2.setBounds(121, 59, 35, 42);
-		panel.add(toggleButton_2);
+		final JToggleButton locker4 = new JToggleButton("0");
+		locker4.setEnabled(false);
+		locker4.setToolTipText("01");
+		locker4.setBounds(121, 59, 35, 42);
+		panel.add(locker4);
 		
-		JToggleButton toggleButton_3 = new JToggleButton("0");
-		toggleButton_3.setEnabled(false);
-		toggleButton_3.setToolTipText("01");
-		toggleButton_3.setBounds(157, 59, 35, 42);
-		panel.add(toggleButton_3);
+		final JToggleButton locker5 = new JToggleButton("0");
+		locker5.setEnabled(false);
+		locker5.setToolTipText("01");
+		locker5.setBounds(157, 59, 35, 42);
+		panel.add(locker5);
 		
-		JToggleButton toggleButton_4 = new JToggleButton("0");
-		toggleButton_4.setEnabled(false);
-		toggleButton_4.setToolTipText("01");
-		toggleButton_4.setBounds(14, 101, 35, 42);
-		panel.add(toggleButton_4);
+		final JToggleButton locker21 = new JToggleButton("0");
+		locker21.setEnabled(false);
+		locker21.setToolTipText("01");
+		locker21.setBounds(14, 101, 35, 42);
+		panel.add(locker21);
 		
-		JToggleButton toggleButton_5 = new JToggleButton("0");
-		toggleButton_5.setEnabled(false);
-		toggleButton_5.setToolTipText("01");
-		toggleButton_5.setBounds(49, 101, 35, 42);
-		panel.add(toggleButton_5);
+		final JToggleButton locker22 = new JToggleButton("0");
+		locker22.setEnabled(false);
+		locker22.setToolTipText("01");
+		locker22.setBounds(49, 101, 35, 42);
+		panel.add(locker22);
 		
-		JToggleButton toggleButton_6 = new JToggleButton("0");
-		toggleButton_6.setEnabled(false);
-		toggleButton_6.setToolTipText("01");
-		toggleButton_6.setBounds(85, 101, 35, 42);
-		panel.add(toggleButton_6);
+		final JToggleButton locker23 = new JToggleButton("0");
+		locker23.setEnabled(false);
+		locker23.setToolTipText("01");
+		locker23.setBounds(85, 101, 35, 42);
+		panel.add(locker23);
 		
-		JToggleButton toggleButton_7 = new JToggleButton("0");
-		toggleButton_7.setEnabled(false);
-		toggleButton_7.setToolTipText("01");
-		toggleButton_7.setBounds(121, 101, 35, 42);
-		panel.add(toggleButton_7);
+		final JToggleButton locker24 = new JToggleButton("0");
+		locker24.setEnabled(false);
+		locker24.setToolTipText("01");
+		locker24.setBounds(121, 101, 35, 42);
+		panel.add(locker24);
 		
-		JToggleButton toggleButton_8 = new JToggleButton("0");
-		toggleButton_8.setEnabled(false);
-		toggleButton_8.setToolTipText("01");
-		toggleButton_8.setBounds(157, 101, 35, 42);
-		panel.add(toggleButton_8);
+		final JToggleButton locker25 = new JToggleButton("0");
+		locker25.setEnabled(false);
+		locker25.setToolTipText("01");
+		locker25.setBounds(157, 101, 35, 42);
+		panel.add(locker25);
 		
-		JToggleButton toggleButton_9 = new JToggleButton("0");
-		toggleButton_9.setEnabled(false);
-		toggleButton_9.setBackground(Color.YELLOW);
-		toggleButton_9.setToolTipText("01");
-		toggleButton_9.setBounds(14, 143, 35, 42);
-		panel.add(toggleButton_9);
+		final JToggleButton locker41 = new JToggleButton("0");
+		locker41.setEnabled(false);
+		locker41.setToolTipText("01");
+		locker41.setBounds(14, 143, 35, 42);
+		panel.add(locker41);
 		
-		JToggleButton toggleButton_10 = new JToggleButton("0");
-		toggleButton_10.setEnabled(false);
-		toggleButton_10.setToolTipText("01");
-		toggleButton_10.setBounds(49, 143, 35, 42);
-		panel.add(toggleButton_10);
+		final JToggleButton locker42 = new JToggleButton("0");
+		locker42.setEnabled(false);
+		locker42.setToolTipText("01");
+		locker42.setBounds(49, 143, 35, 42);
+		panel.add(locker42);
 		
-		JToggleButton toggleButton_11 = new JToggleButton("0");
-		toggleButton_11.setEnabled(false);
-		toggleButton_11.setToolTipText("01");
-		toggleButton_11.setBounds(85, 143, 35, 42);
-		panel.add(toggleButton_11);
+		final JToggleButton locker43 = new JToggleButton("0");
+		locker43.setEnabled(false);
+		locker43.setToolTipText("01");
+		locker43.setBounds(85, 143, 35, 42);
+		panel.add(locker43);
 		
-		JToggleButton toggleButton_12 = new JToggleButton("0");
-		toggleButton_12.setEnabled(false);
-		toggleButton_12.setToolTipText("01");
-		toggleButton_12.setBounds(121, 143, 35, 42);
-		panel.add(toggleButton_12);
+		final JToggleButton locker44 = new JToggleButton("0");
+		locker44.setEnabled(false);
+		locker44.setToolTipText("01");
+		locker44.setBounds(121, 143, 35, 42);
+		panel.add(locker44);
 		
-		JToggleButton toggleButton_13 = new JToggleButton("0");
-		toggleButton_13.setBackground(Color.ORANGE);
-		toggleButton_13.setEnabled(false);
-		toggleButton_13.setToolTipText("01");
-		toggleButton_13.setBounds(157, 143, 35, 42);
-		panel.add(toggleButton_13);
+		final JToggleButton locker45 = new JToggleButton("0");
+		locker45.setEnabled(false);
+		locker45.setToolTipText("01");
+		locker45.setBounds(157, 143, 35, 42);
+		panel.add(locker45);
 		
 		JLabel label_13 = new JLabel("01~05");
 		label_13.setBounds(206, 71, 62, 18);
@@ -550,281 +551,300 @@ public class Login{
 		lblNewLabel_3.setBounds(0, 0, 580, 47);
 		panel_7.add(lblNewLabel_3);
 		
-		JToggleButton toggleButton_14 = new JToggleButton("0");
-		toggleButton_14.setToolTipText("01");
-		toggleButton_14.setEnabled(false);
-		toggleButton_14.setBounds(267, 59, 35, 42);
-		panel.add(toggleButton_14);
+		final JToggleButton locker6 = new JToggleButton("0");
+		locker6.setToolTipText("01");
+		locker6.setEnabled(false);
+		locker6.setBounds(267, 59, 35, 42);
+		panel.add(locker6);
 		
-		JToggleButton toggleButton_15 = new JToggleButton("0");
-		toggleButton_15.setToolTipText("01");
-		toggleButton_15.setEnabled(false);
-		toggleButton_15.setBounds(267, 101, 35, 42);
-		panel.add(toggleButton_15);
+		final JToggleButton locker26 = new JToggleButton("0");
+		locker26.setToolTipText("01");
+		locker26.setEnabled(false);
+		locker26.setBounds(267, 101, 35, 42);
+		panel.add(locker26);
 		
-		JToggleButton toggleButton_16 = new JToggleButton("0");
-		toggleButton_16.setToolTipText("01");
-		toggleButton_16.setEnabled(false);
-		toggleButton_16.setBackground(Color.YELLOW);
-		toggleButton_16.setBounds(267, 143, 35, 42);
-		panel.add(toggleButton_16);
+		final JToggleButton locker46 = new JToggleButton("0");
+		locker46.setToolTipText("01");
+		locker46.setEnabled(false);
+		locker46.setBounds(267, 143, 35, 42);
+		panel.add(locker46);
 		
-		JToggleButton toggleButton_17 = new JToggleButton("0");
-		toggleButton_17.setToolTipText("01");
-		toggleButton_17.setEnabled(false);
-		toggleButton_17.setBounds(302, 143, 35, 42);
-		panel.add(toggleButton_17);
+		final JToggleButton locker47 = new JToggleButton("0");
+		locker47.setToolTipText("01");
+		locker47.setEnabled(false);
+		locker47.setBounds(302, 143, 35, 42);
+		panel.add(locker47);
 		
-		JToggleButton toggleButton_18 = new JToggleButton("0");
-		toggleButton_18.setToolTipText("01");
-		toggleButton_18.setEnabled(false);
-		toggleButton_18.setBounds(302, 101, 35, 42);
-		panel.add(toggleButton_18);
+		final JToggleButton locker27 = new JToggleButton("0");
+		locker27.setToolTipText("01");
+		locker27.setEnabled(false);
+		locker27.setBounds(302, 101, 35, 42);
+		panel.add(locker27);
 		
-		JToggleButton toggleButton_19 = new JToggleButton("0");
-		toggleButton_19.setToolTipText("01");
-		toggleButton_19.setEnabled(false);
-		toggleButton_19.setBounds(302, 59, 35, 42);
-		panel.add(toggleButton_19);
+		final JToggleButton locker7 = new JToggleButton("0");
+		locker7.setToolTipText("01");
+		locker7.setEnabled(false);
+		locker7.setBounds(302, 59, 35, 42);
+		panel.add(locker7);
 		
-		JToggleButton toggleButton_20 = new JToggleButton("0");
-		toggleButton_20.setToolTipText("01");
-		toggleButton_20.setEnabled(false);
-		toggleButton_20.setBounds(338, 59, 35, 42);
-		panel.add(toggleButton_20);
+		final JToggleButton locker8 = new JToggleButton("0");
+		locker8.setToolTipText("01");
+		locker8.setEnabled(false);
+		locker8.setBounds(338, 59, 35, 42);
+		panel.add(locker8);
 		
-		JToggleButton toggleButton_21 = new JToggleButton("0");
-		toggleButton_21.setToolTipText("01");
-		toggleButton_21.setEnabled(false);
-		toggleButton_21.setBounds(338, 101, 35, 42);
-		panel.add(toggleButton_21);
+		final JToggleButton locker28 = new JToggleButton("0");
+		locker28.setToolTipText("01");
+		locker28.setEnabled(false);
+		locker28.setBounds(338, 101, 35, 42);
+		panel.add(locker28);
 		
-		JToggleButton toggleButton_22 = new JToggleButton("0");
-		toggleButton_22.setToolTipText("01");
-		toggleButton_22.setEnabled(false);
-		toggleButton_22.setBounds(338, 143, 35, 42);
-		panel.add(toggleButton_22);
+		final JToggleButton locker48 = new JToggleButton("0");
+		locker48.setToolTipText("01");
+		locker48.setEnabled(false);
+		locker48.setBounds(338, 143, 35, 42);
+		panel.add(locker48);
 		
-		JToggleButton toggleButton_23 = new JToggleButton("0");
-		toggleButton_23.setToolTipText("01");
-		toggleButton_23.setEnabled(false);
-		toggleButton_23.setBounds(374, 143, 35, 42);
-		panel.add(toggleButton_23);
+		final JToggleButton locker49 = new JToggleButton("0");
+		locker49.setToolTipText("01");
+		locker49.setEnabled(false);
+		locker49.setBounds(374, 143, 35, 42);
+		panel.add(locker49);
 		
-		JToggleButton toggleButton_24 = new JToggleButton("0");
-		toggleButton_24.setToolTipText("01");
-		toggleButton_24.setEnabled(false);
-		toggleButton_24.setBounds(374, 101, 35, 42);
-		panel.add(toggleButton_24);
+		final JToggleButton locker29 = new JToggleButton("0");
+		locker29.setToolTipText("01");
+		locker29.setEnabled(false);
+		locker29.setBounds(374, 101, 35, 42);
+		panel.add(locker29);
 		
-		JToggleButton toggleButton_25 = new JToggleButton("0");
-		toggleButton_25.setToolTipText("01");
-		toggleButton_25.setEnabled(false);
-		toggleButton_25.setBounds(374, 59, 35, 42);
-		panel.add(toggleButton_25);
+		final JToggleButton locker9 = new JToggleButton("0");
+		locker9.setToolTipText("01");
+		locker9.setEnabled(false);
+		locker9.setBounds(374, 59, 35, 42);
+		panel.add(locker9);
 		
-		JToggleButton toggleButton_26 = new JToggleButton("0");
-		toggleButton_26.setToolTipText("01");
-		toggleButton_26.setEnabled(false);
-		toggleButton_26.setBounds(410, 59, 35, 42);
-		panel.add(toggleButton_26);
+		final JToggleButton locker10 = new JToggleButton("0");
+		locker10.setToolTipText("01");
+		locker10.setEnabled(false);
+		locker10.setBounds(410, 59, 35, 42);
+		panel.add(locker10);
 		
-		JToggleButton toggleButton_27 = new JToggleButton("0");
-		toggleButton_27.setToolTipText("01");
-		toggleButton_27.setEnabled(false);
-		toggleButton_27.setBounds(410, 101, 35, 42);
-		panel.add(toggleButton_27);
+		final JToggleButton locker30 = new JToggleButton("0");
+		locker30.setToolTipText("01");
+		locker30.setEnabled(false);
+		locker30.setBounds(410, 101, 35, 42);
+		panel.add(locker30);
 		
-		JToggleButton toggleButton_28 = new JToggleButton("0");
-		toggleButton_28.setToolTipText("01");
-		toggleButton_28.setEnabled(false);
-		toggleButton_28.setBackground(Color.ORANGE);
-		toggleButton_28.setBounds(410, 143, 35, 42);
-		panel.add(toggleButton_28);
+		final JToggleButton locker50 = new JToggleButton("0");
+		locker50.setToolTipText("01");
+		locker50.setEnabled(false);
+		locker50.setBounds(410, 143, 35, 42);
+		panel.add(locker50);
 		
-		JToggleButton toggleButton_29 = new JToggleButton("0");
-		toggleButton_29.setToolTipText("01");
-		toggleButton_29.setEnabled(false);
-		toggleButton_29.setBounds(459, 59, 35, 42);
-		panel.add(toggleButton_29);
+		final JToggleButton locker11 = new JToggleButton("0");
+		locker11.setToolTipText("01");
+		locker11.setEnabled(false);
+		locker11.setBounds(459, 59, 35, 42);
+		panel.add(locker11);
 		
-		JToggleButton toggleButton_30 = new JToggleButton("0");
-		toggleButton_30.setToolTipText("01");
-		toggleButton_30.setEnabled(false);
-		toggleButton_30.setBounds(459, 101, 35, 42);
-		panel.add(toggleButton_30);
+		final JToggleButton locker31 = new JToggleButton("0");
+		locker31.setToolTipText("01");
+		locker31.setEnabled(false);
+		locker31.setBounds(459, 101, 35, 42);
+		panel.add(locker31);
 		
-		JToggleButton toggleButton_31 = new JToggleButton("0");
-		toggleButton_31.setToolTipText("01");
-		toggleButton_31.setEnabled(false);
-		toggleButton_31.setBackground(Color.YELLOW);
-		toggleButton_31.setBounds(459, 143, 35, 42);
-		panel.add(toggleButton_31);
+		final JToggleButton locker51 = new JToggleButton("0");
+		locker51.setToolTipText("01");
+		locker51.setEnabled(false);
+		locker51.setBounds(459, 143, 35, 42);
+		panel.add(locker51);
 		
-		JToggleButton toggleButton_32 = new JToggleButton("0");
-		toggleButton_32.setToolTipText("01");
-		toggleButton_32.setEnabled(false);
-		toggleButton_32.setBounds(494, 143, 35, 42);
-		panel.add(toggleButton_32);
+		final JToggleButton locker52 = new JToggleButton("0");
+		locker52.setToolTipText("01");
+		locker52.setEnabled(false);
+		locker52.setBounds(494, 143, 35, 42);
+		panel.add(locker52);
 		
-		JToggleButton toggleButton_33 = new JToggleButton("0");
-		toggleButton_33.setToolTipText("01");
-		toggleButton_33.setEnabled(false);
-		toggleButton_33.setBounds(494, 101, 35, 42);
-		panel.add(toggleButton_33);
+		final JToggleButton locker32 = new JToggleButton("0");
+		locker32.setToolTipText("01");
+		locker32.setEnabled(false);
+		locker32.setBounds(494, 101, 35, 42);
+		panel.add(locker32);
 		
-		JToggleButton toggleButton_34 = new JToggleButton("0");
-		toggleButton_34.setToolTipText("01");
-		toggleButton_34.setEnabled(false);
-		toggleButton_34.setBounds(494, 59, 35, 42);
-		panel.add(toggleButton_34);
+		final JToggleButton locker12 = new JToggleButton("0");
+		locker12.setToolTipText("01");
+		locker12.setEnabled(false);
+		locker12.setBounds(494, 59, 35, 42);
+		panel.add(locker12);
 		
-		JToggleButton toggleButton_35 = new JToggleButton("0");
-		toggleButton_35.setToolTipText("01");
-		toggleButton_35.setEnabled(false);
-		toggleButton_35.setBounds(530, 59, 35, 42);
-		panel.add(toggleButton_35);
+		final JToggleButton locker13 = new JToggleButton("0");
+		locker13.setToolTipText("01");
+		locker13.setEnabled(false);
+		locker13.setBounds(530, 59, 35, 42);
+		panel.add(locker13);
 		
-		JToggleButton toggleButton_36 = new JToggleButton("0");
-		toggleButton_36.setToolTipText("01");
-		toggleButton_36.setEnabled(false);
-		toggleButton_36.setBounds(530, 101, 35, 42);
-		panel.add(toggleButton_36);
+		final JToggleButton locker33 = new JToggleButton("0");
+		locker33.setToolTipText("01");
+		locker33.setEnabled(false);
+		locker33.setBounds(530, 101, 35, 42);
+		panel.add(locker33);
 		
-		JToggleButton toggleButton_37 = new JToggleButton("0");
-		toggleButton_37.setToolTipText("01");
-		toggleButton_37.setEnabled(false);
-		toggleButton_37.setBounds(530, 143, 35, 42);
-		panel.add(toggleButton_37);
+		final JToggleButton locker53 = new JToggleButton("0");
+		locker53.setToolTipText("01");
+		locker53.setEnabled(false);
+		locker53.setBounds(530, 143, 35, 42);
+		panel.add(locker53);
 		
-		JToggleButton toggleButton_38 = new JToggleButton("0");
-		toggleButton_38.setToolTipText("01");
-		toggleButton_38.setEnabled(false);
-		toggleButton_38.setBounds(566, 143, 35, 42);
-		panel.add(toggleButton_38);
+		final JToggleButton locker54 = new JToggleButton("0");
+		locker54.setToolTipText("01");
+		locker54.setEnabled(false);
+		locker54.setBounds(566, 143, 35, 42);
+		panel.add(locker54);
 		
-		JToggleButton toggleButton_39 = new JToggleButton("0");
-		toggleButton_39.setToolTipText("01");
-		toggleButton_39.setEnabled(false);
-		toggleButton_39.setBounds(566, 101, 35, 42);
-		panel.add(toggleButton_39);
+		final JToggleButton locker34 = new JToggleButton("0");
+		locker34.setToolTipText("01");
+		locker34.setEnabled(false);
+		locker34.setBounds(566, 101, 35, 42);
+		panel.add(locker34);
 		
-		JToggleButton toggleButton_40 = new JToggleButton("0");
-		toggleButton_40.setToolTipText("01");
-		toggleButton_40.setEnabled(false);
-		toggleButton_40.setBounds(566, 59, 35, 42);
-		panel.add(toggleButton_40);
+		final JToggleButton locker14 = new JToggleButton("0");
+		locker14.setToolTipText("01");
+		locker14.setEnabled(false);
+		locker14.setBounds(566, 59, 35, 42);
+		panel.add(locker14);
 		
-		JToggleButton toggleButton_41 = new JToggleButton("0");
-		toggleButton_41.setToolTipText("01");
-		toggleButton_41.setEnabled(false);
-		toggleButton_41.setBounds(602, 59, 35, 42);
-		panel.add(toggleButton_41);
+		final JToggleButton locker15 = new JToggleButton("0");
+		locker15.setToolTipText("01");
+		locker15.setEnabled(false);
+		locker15.setBounds(602, 59, 35, 42);
+		panel.add(locker15);
 		
-		JToggleButton toggleButton_42 = new JToggleButton("0");
-		toggleButton_42.setToolTipText("01");
-		toggleButton_42.setEnabled(false);
-		toggleButton_42.setBounds(602, 101, 35, 42);
-		panel.add(toggleButton_42);
+		final JToggleButton locker35 = new JToggleButton("0");
+		locker35.setToolTipText("01");
+		locker35.setEnabled(false);
+		locker35.setBounds(602, 101, 35, 42);
+		panel.add(locker35);
 		
-		JToggleButton toggleButton_43 = new JToggleButton("0");
-		toggleButton_43.setToolTipText("01");
-		toggleButton_43.setEnabled(false);
-		toggleButton_43.setBackground(Color.ORANGE);
-		toggleButton_43.setBounds(602, 143, 35, 42);
-		panel.add(toggleButton_43);
+		final JToggleButton locker55 = new JToggleButton("0");
+		locker55.setToolTipText("01");
+		locker55.setEnabled(false);
+		locker55.setBounds(602, 143, 35, 42);
+		panel.add(locker55);
 		
-		JToggleButton toggleButton_44 = new JToggleButton("0");
-		toggleButton_44.setToolTipText("01");
-		toggleButton_44.setEnabled(false);
-		toggleButton_44.setBounds(648, 59, 35, 42);
-		panel.add(toggleButton_44);
+		final JToggleButton locker16 = new JToggleButton("0");
+		locker16.setToolTipText("01");
+		locker16.setEnabled(false);
+		locker16.setBounds(648, 59, 35, 42);
+		panel.add(locker16);
 		
-		JToggleButton toggleButton_45 = new JToggleButton("0");
-		toggleButton_45.setToolTipText("01");
-		toggleButton_45.setEnabled(false);
-		toggleButton_45.setBounds(648, 101, 35, 42);
-		panel.add(toggleButton_45);
+		final JToggleButton locker36 = new JToggleButton("0");
+		locker36.setToolTipText("01");
+		locker36.setEnabled(false);
+		locker36.setBounds(648, 101, 35, 42);
+		panel.add(locker36);
 		
-		JToggleButton toggleButton_46 = new JToggleButton("0");
-		toggleButton_46.setToolTipText("01");
-		toggleButton_46.setEnabled(false);
-		toggleButton_46.setBackground(Color.YELLOW);
-		toggleButton_46.setBounds(648, 143, 35, 42);
-		panel.add(toggleButton_46);
+		final JToggleButton locker56 = new JToggleButton("0");
+		locker56.setToolTipText("01");
+		locker56.setEnabled(false);
+		locker56.setBounds(648, 143, 35, 42);
+		panel.add(locker56);
 		
-		JToggleButton toggleButton_47 = new JToggleButton("0");
-		toggleButton_47.setToolTipText("01");
-		toggleButton_47.setEnabled(false);
-		toggleButton_47.setBounds(683, 143, 35, 42);
-		panel.add(toggleButton_47);
+		final JToggleButton locker57 = new JToggleButton("0");
+		locker57.setToolTipText("01");
+		locker57.setEnabled(false);
+		locker57.setBounds(683, 143, 35, 42);
+		panel.add(locker57);
 		
-		JToggleButton toggleButton_48 = new JToggleButton("0");
-		toggleButton_48.setToolTipText("01");
-		toggleButton_48.setEnabled(false);
-		toggleButton_48.setBounds(683, 101, 35, 42);
-		panel.add(toggleButton_48);
+		final JToggleButton locker37 = new JToggleButton("0");
+		locker37.setToolTipText("01");
+		locker37.setEnabled(false);
+		locker37.setBounds(683, 101, 35, 42);
+		panel.add(locker37);
 		
-		JToggleButton toggleButton_49 = new JToggleButton("0");
-		toggleButton_49.setToolTipText("01");
-		toggleButton_49.setEnabled(false);
-		toggleButton_49.setBounds(683, 59, 35, 42);
-		panel.add(toggleButton_49);
+		final JToggleButton locker17 = new JToggleButton("0");
+		locker17.setToolTipText("01");
+		locker17.setEnabled(false);
+		locker17.setBounds(683, 59, 35, 42);
+		panel.add(locker17);
 		
-		JToggleButton toggleButton_50 = new JToggleButton("0");
-		toggleButton_50.setToolTipText("01");
-		toggleButton_50.setEnabled(false);
-		toggleButton_50.setBounds(719, 59, 35, 42);
-		panel.add(toggleButton_50);
+		final JToggleButton locker18 = new JToggleButton("0");
+		locker18.setToolTipText("01");
+		locker18.setEnabled(false);
+		locker18.setBounds(719, 59, 35, 42);
+		panel.add(locker18);
 		
-		JToggleButton toggleButton_51 = new JToggleButton("0");
-		toggleButton_51.setToolTipText("01");
-		toggleButton_51.setEnabled(false);
-		toggleButton_51.setBounds(719, 101, 35, 42);
-		panel.add(toggleButton_51);
+		final JToggleButton locker38 = new JToggleButton("0");
+		locker38.setToolTipText("01");
+		locker38.setEnabled(false);
+		locker38.setBounds(719, 101, 35, 42);
+		panel.add(locker38);
 		
-		JToggleButton toggleButton_52 = new JToggleButton("0");
-		toggleButton_52.setToolTipText("01");
-		toggleButton_52.setEnabled(false);
-		toggleButton_52.setBounds(719, 143, 35, 42);
-		panel.add(toggleButton_52);
+		final JToggleButton locker58 = new JToggleButton("0");
+		locker58.setToolTipText("01");
+		locker58.setEnabled(false);
+		locker58.setBounds(719, 143, 35, 42);
+		panel.add(locker58);
 		
-		JToggleButton toggleButton_53 = new JToggleButton("0");
-		toggleButton_53.setToolTipText("01");
-		toggleButton_53.setEnabled(false);
-		toggleButton_53.setBounds(755, 143, 35, 42);
-		panel.add(toggleButton_53);
+		final JToggleButton locker59 = new JToggleButton("0");
+		locker59.setToolTipText("01");
+		locker59.setEnabled(false);
+		locker59.setBounds(755, 143, 35, 42);
+		panel.add(locker59);
 		
-		JToggleButton toggleButton_54 = new JToggleButton("0");
-		toggleButton_54.setToolTipText("01");
-		toggleButton_54.setEnabled(false);
-		toggleButton_54.setBounds(755, 101, 35, 42);
-		panel.add(toggleButton_54);
+		final JToggleButton locker39 = new JToggleButton("0");
+		locker39.setToolTipText("01");
+		locker39.setEnabled(false);
+		locker39.setBounds(755, 101, 35, 42);
+		panel.add(locker39);
 		
-		JToggleButton toggleButton_55 = new JToggleButton("0");
-		toggleButton_55.setToolTipText("01");
-		toggleButton_55.setEnabled(false);
-		toggleButton_55.setBounds(755, 59, 35, 42);
-		panel.add(toggleButton_55);
+		final JToggleButton locker19 = new JToggleButton("0");
+		locker19.setToolTipText("01");
+		locker19.setEnabled(false);
+		locker19.setBounds(755, 59, 35, 42);
+		panel.add(locker19);
 		
-		JToggleButton toggleButton_56 = new JToggleButton("0");
-		toggleButton_56.setToolTipText("01");
-		toggleButton_56.setEnabled(false);
-		toggleButton_56.setBounds(791, 59, 35, 42);
-		panel.add(toggleButton_56);
+		final JToggleButton locker20 = new JToggleButton("0");
+		locker20.setToolTipText("01");
+		locker20.setEnabled(false);
+		locker20.setBounds(791, 59, 35, 42);
+		panel.add(locker20);
 		
-		JToggleButton toggleButton_57 = new JToggleButton("0");
-		toggleButton_57.setToolTipText("01");
-		toggleButton_57.setEnabled(false);
-		toggleButton_57.setBounds(791, 101, 35, 42);
-		panel.add(toggleButton_57);
+		final JToggleButton locker40 = new JToggleButton("0");
+		locker40.setToolTipText("01");
+		locker40.setEnabled(false);
+		locker40.setBounds(791, 101, 35, 42);
+		panel.add(locker40);
 		
-		JToggleButton toggleButton_58 = new JToggleButton("0");
-		toggleButton_58.setToolTipText("01");
-		toggleButton_58.setEnabled(false);
-		toggleButton_58.setBackground(Color.ORANGE);
-		toggleButton_58.setBounds(791, 143, 35, 42);
-		panel.add(toggleButton_58);
+		final JToggleButton locker60 = new JToggleButton("0");
+		locker60.setToolTipText("01");
+		locker60.setEnabled(false);
+
+		locker60.setBounds(791, 143, 35, 42);
+		panel.add(locker60);
+		
+		JToggleButton toggleButton = new JToggleButton("0");
+		toggleButton.setBackground(Color.GREEN);
+		toggleButton.setToolTipText("01");
+		toggleButton.setEnabled(false);
+		toggleButton.setBounds(697, 246, 35, 42);
+		panel.add(toggleButton);
+		
+		JToggleButton toggleButton_1 = new JToggleButton("0");
+		toggleButton_1.setBackground(Color.RED);
+		toggleButton_1.setToolTipText("01");
+		toggleButton_1.setEnabled(false);
+		toggleButton_1.setBounds(804, 246, 35, 42);
+		panel.add(toggleButton_1);
+		
+		JLabel label_8 = new JLabel("\uB300\uC5EC\uC911");
+		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+		label_8.setBounds(840, 258, 62, 18);
+		panel.add(label_8);
+		
+		JLabel label_9 = new JLabel("\uB300\uC5EC\uAC00\uB2A5");
+		label_9.setHorizontalAlignment(SwingConstants.CENTER);
+		label_9.setBounds(732, 258, 62, 18);
+		panel.add(label_9);
 		
 
 		
@@ -887,9 +907,373 @@ public class Login{
 		label_7.setBounds(944, 286, 120, 35);
 		mainPage.add(label_7);
 		
-		JButton button_2 = new JButton("\uC0C8\uB85C\uACE0\uCE68");
-		button_2.setBounds(789, 12, 141, 35);
-		mainPage.add(button_2);
+		JButton refreshBtn = new JButton("\uC0C8\uB85C\uACE0\uCE68");
+		refreshBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(Locker.getLockerState(1)==1) {
+					locker1.setBackground(Color.red);
+				} else {
+					locker1.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(2)==1) {
+					locker2.setBackground(Color.red);
+				} else {
+					locker2.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(3)==1) {
+					locker3.setBackground(Color.red);
+				} else {
+					locker3.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(4)==1) {
+					locker4.setBackground(Color.red);
+				} else {
+					locker4.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(5)==1) {
+					locker5.setBackground(Color.red);
+				} else {
+					locker5.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(6)==1) {
+					locker6.setBackground(Color.red);
+				} else {
+					locker6.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(7)==1) {
+					locker7.setBackground(Color.red);
+				} else {
+					locker7.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(8)==1) {
+					locker8.setBackground(Color.red);
+				} else {
+					locker8.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(9)==1) {
+					locker9.setBackground(Color.red);
+				} else {
+					locker9.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(10)==1) {
+					locker10.setBackground(Color.red);
+				} else {
+					locker10.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(11)==1) {
+					locker11.setBackground(Color.red);
+				} else {
+					locker11.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(12)==1) {
+					locker12.setBackground(Color.red);
+				} else {
+					locker12.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(13)==1) {
+					locker13.setBackground(Color.red);
+				} else {
+					locker13.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(14)==1) {
+					locker14.setBackground(Color.red);
+				} else {
+					locker14.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(15)==1) {
+					locker15.setBackground(Color.red);
+				} else {
+					locker15.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(16)==1) {
+					locker16.setBackground(Color.red);
+				} else {
+					locker16.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(17)==1) {
+					locker17.setBackground(Color.red);
+				} else {
+					locker17.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(18)==1) {
+					locker18.setBackground(Color.red);
+				} else {
+					locker18.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(19)==1) {
+					locker19.setBackground(Color.red);
+				} else {
+					locker19.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(20)==1) {
+					locker20.setBackground(Color.red);
+				} else {
+					locker20.setBackground(Color.green);
+				}
+				
+				if(Locker.getLockerState(21)==1) {
+					locker21.setBackground(Color.red);
+				} else {
+					locker21.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(22)==1) {
+					locker22.setBackground(Color.red);
+				} else {
+					locker22.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(23)==1) {
+					locker23.setBackground(Color.red);
+				} else {
+					locker23.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(24)==1) {
+					locker24.setBackground(Color.red);
+				} else {
+					locker24.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(25)==1) {
+					locker25.setBackground(Color.red);
+				} else {
+					locker25.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(26)==1) {
+					locker26.setBackground(Color.red);
+				} else {
+					locker26.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(27)==1) {
+					locker27.setBackground(Color.red);
+				} else {
+					locker27.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(28)==1) {
+					locker28.setBackground(Color.red);
+				} else {
+					locker28.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(29)==1) {
+					locker29.setBackground(Color.red);
+				} else {
+					locker29.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(30)==1) {
+					locker30.setBackground(Color.red);
+				} else {
+					locker30.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(31)==1) {
+					locker31.setBackground(Color.red);
+				} else {
+					locker31.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(32)==1) {
+					locker32.setBackground(Color.red);
+				} else {
+					locker32.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(33)==1) {
+					locker33.setBackground(Color.red);
+				} else {
+					locker33.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(34)==1) {
+					locker34.setBackground(Color.red);
+				} else {
+					locker34.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(35)==1) {
+					locker35.setBackground(Color.red);
+				} else {
+					locker35.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(36)==1) {
+					locker36.setBackground(Color.red);
+				} else {
+					locker36.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(37)==1) {
+					locker37.setBackground(Color.red);
+				} else {
+					locker37.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(38)==1) {
+					locker38.setBackground(Color.red);
+				} else {
+					locker38.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(39)==1) {
+					locker39.setBackground(Color.red);
+				} else {
+					locker39.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(40)==1) {
+					locker40.setBackground(Color.red);
+				} else {
+					locker40.setBackground(Color.green);
+				}
+				
+				if(Locker.getLockerState(41)==1) {
+					locker41.setBackground(Color.red);
+				} else {
+					locker41.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(42)==1) {
+					locker42.setBackground(Color.red);
+				} else {
+					locker42.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(43)==1) {
+					locker43.setBackground(Color.red);
+				} else {
+					locker43.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(44)==1) {
+					locker44.setBackground(Color.red);
+				} else {
+					locker44.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(45)==1) {
+					locker45.setBackground(Color.red);
+				} else {
+					locker45.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(46)==1) {
+					locker46.setBackground(Color.red);
+				} else {
+					locker46.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(47)==1) {
+					locker47.setBackground(Color.red);
+				} else {
+					locker47.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(48)==1) {
+					locker48.setBackground(Color.red);
+				} else {
+					locker48.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(49)==1) {
+					locker49.setBackground(Color.red);
+				} else {
+					locker49.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(50)==1) {
+					locker50.setBackground(Color.red);
+				} else {
+					locker50.setBackground(Color.green);
+				}
+				
+				if(Locker.getLockerState(51)==1) {
+					locker51.setBackground(Color.red);
+				} else {
+					locker51.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(52)==1) {
+					locker52.setBackground(Color.red);
+				} else {
+					locker52.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(53)==1) {
+					locker53.setBackground(Color.red);
+				} else {
+					locker53.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(54)==1) {
+					locker54.setBackground(Color.red);
+				} else {
+					locker54.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(55)==1) {
+					locker55.setBackground(Color.red);
+				} else {
+					locker55.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(56)==1) {
+					locker56.setBackground(Color.red);
+				} else {
+					locker56.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(57)==1) {
+					locker57.setBackground(Color.red);
+				} else {
+					locker57.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(58)==1) {
+					locker58.setBackground(Color.red);
+				} else {
+					locker58.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(59)==1) {
+					locker59.setBackground(Color.red);
+				} else {
+					locker59.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(60)==1) {
+					locker60.setBackground(Color.red);
+				} else {
+					locker60.setBackground(Color.green);
+				}
+			}
+		});
+		refreshBtn.setBounds(789, 12, 141, 35);
+		mainPage.add(refreshBtn);
 		
 		JPanel changeInfo = new JPanel();
 		changeInfo.setLayout(null);
