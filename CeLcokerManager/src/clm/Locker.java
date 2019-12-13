@@ -17,11 +17,59 @@ public class Locker {
 //		getLockerNum();
 		
 
-//		System.out.println(getLockerState(1));
+//		System.out.println(getLockerState(9));
+//		getLent(5);
+//		getRtnL(10);
+
+	}
+	
+	public static void createStudent(String stdnum, String name, String id, String password) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement insert = con.prepareStatement(""
+					+ "INSERT INTO student"
+					+ "(stdnum, name, id, password)"
+					+ "VALUE"
+					+ "('"+stdnum+"','"+name+"','"+id+"','"+password+"')");
+				insert.executeUpdate();
+				System.out.println("회원정보가 등록되었습니다.");
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
+	public static void getLent(int lockernum, String name ) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement insertState = con.prepareStatement("UPDATE locker SET state = '대여중' WHERE lockernum='"+lockernum+"'" );
+			PreparedStatement insertBorrower = con.prepareStatement("UPDATE locker SET borrower = '"+name+"' WHERE lockernum='"+lockernum+"'" );
+				insertState.executeUpdate();
+				insertBorrower.executeUpdate();
+				System.out.println("회원정보가 등록되었습니다.");
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		
+		}
+	}
+	
+	public static void getRtnL(int num) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement resetState = con.prepareStatement("UPDATE locker SET state = '대여가능' WHERE lockernum='"+num+"'" );
+			resetState.executeUpdate();
+			PreparedStatement resetBorrower = con.prepareStatement("UPDATE locker SET borrower = null WHERE lockernum='"+num+"'" );
+			resetBorrower.executeUpdate();
+			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+
+		}
 		
 	}
 	
-
+	
 	public static String[][] getLockers(){
 		try {
 			Connection con = getConnection();

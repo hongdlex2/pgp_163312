@@ -49,58 +49,14 @@ public class Login{
 	private JTextField name;
 	private JTextField stdnum;
 	private JPasswordField txtPass;
-	private JTable table;
-	private JTable table_1;
+	private JTable allStateTable;
+	private JTable myStateTable;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
-	
-/*	static Connection con;
-	   @SuppressWarnings("deprecation")
-	   public Login(String id, String pass) {
-	   
-	      try {
-	         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-	         String url = "jdbc:mysql://localhost:3306/celockermanager?serverTimezone=Asia/Seoul";
-	         con = DriverManager.getConnection(url, id, pass);
-	         System.out.println("데이터베이스에 성공적으로 연결하였습니다.");
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	      
-	   }
-	   
-	   public static void getData() {
-		   String sql = "select lockernum, state, borrower, startdate, enddate from locker ";
-		   
-		   try {
-			   	PreparedStatement stmt = con.prepareStatement(sql);
-			   	ResultSet rs = stmt.executeQuery();
-			   	while(rs.next()) { 
-			   		String lockernum = rs.getString(1);
-			   		String state = rs.getString(2);
-			   		String borrower = rs.getString(3);
-			   		String startdate = rs.getString(4);
-			   		String enddate = rs.getString(5);
-			   		
-			   		System.out.println(lockernum + " \t| " + state + " \t| " + borrower + " \t| " + startdate + " \t| " + enddate);
-			   	}
-			   	rs.close();
-			   	stmt.close();
-		   } catch(Exception e) {
-			   e.printStackTrace();
-		   }
-	   }
-	   
-	   public static void close() {
-		   try {
-			   con.close();
-		   } catch (Exception e) {
-		   }
-	   }
-*/
-	
+	private String idd;
+
 	/**
 	 * Launch the application.
 	 */
@@ -144,7 +100,7 @@ public class Login{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		Student student = new Student();
+		final Student student = new Student();
 		Locker locker = new Locker();
 		frmCelockermanager = new JFrame();
 		frmCelockermanager.setTitle("CeLockerManager");
@@ -183,10 +139,12 @@ public class Login{
 				logBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
-						String id = "ghdals1997";
-						String pass = "tnghcjstk3";
+						idd = txtID.getText();
+						String pass = txtPass.getText();
 						
-						if(id.equals(txtID.getText())&&pass.equals(txtPass.getText())) {
+						int checkNum = Student.getLogin(idd, pass);
+						
+						if(checkNum ==1 ) {
 							JOptionPane.showMessageDialog(null,"로그인 성공");
 							txtID.setText("");
 							txtPass.setText("");
@@ -197,11 +155,12 @@ public class Login{
 							c.show(panel_1, "메인");
 						} else {
 							JOptionPane.showMessageDialog(null,"로그인 실패");
+							txtID.setText("");
+							txtPass.setText("");
 						}
 						
 						
-//						CardLayout c=(CardLayout)(panel_1.getLayout());
-//						c.show(panel_1, "메인");
+
 					}
 					
 				});
@@ -338,6 +297,8 @@ public class Login{
 		JButton btnLogout = new JButton("\uB85C\uADF8\uC544\uC6C3");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(null, "성공적으로 로그아웃하였습니다.");
 				CardLayout c=(CardLayout)(panel_1.getLayout());
 				c.show(panel_1, "로그인");
 			}
@@ -346,14 +307,6 @@ public class Login{
 		
 		btnLogout.setBounds(1099, 12, 141, 35);
 		mainPage.add(btnLogout);
-		
-		JButton button_3 = new JButton("\uB300\uC5EC\uD558\uAE30");
-		button_3.setBounds(944, 418, 296, 203);
-		mainPage.add(button_3);
-		
-		JButton button_4 = new JButton("\uBC18\uB0A9\uD558\uAE30");
-		button_4.setBounds(944, 673, 296, 68);
-		mainPage.add(button_4);
 		
 		JLabel label_5 = new JLabel("\uB0B4 \uC0AC\uBB3C\uD568 \uC815\uBCF4");
 		label_5.setFont(new Font("나눔고딕", Font.BOLD, 20));
@@ -849,20 +802,21 @@ public class Login{
 
 		
 		String[][] data = locker.getLockers();
+		
 		String[] headers = new String[] {"사물함 번호", "대여상태","대여자","대여 시작일","대여 종료일"};
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(14, 418, 916, 202);
 		mainPage.add(scrollPane_1);
-		table = new JTable(data, headers);
-		scrollPane_1.setViewportView(table);
+		allStateTable = new JTable(data, headers);
+		scrollPane_1.setViewportView(allStateTable);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(14, 673, 916, 68);
 		mainPage.add(scrollPane);
 		
-		table_1 = new JTable(data,headers);
-		scrollPane.setViewportView(table_1);
+		myStateTable = new JTable(data,headers);
+		scrollPane.setViewportView(myStateTable);
 		
 		JLabel label_6 = new JLabel("\uC0AC\uBB3C\uD568 \uC120\uD0DD");
 		label_6.setFont(new Font("나눔고딕", Font.BOLD, 20));
@@ -893,19 +847,780 @@ public class Login{
 		String[] s = Locker.getLockerNum();
 
  		
-		JComboBox comboBox = new JComboBox(s);
+		final JComboBox comboBox = new JComboBox(s);
 		comboBox.setBounds(944, 99, 296, 35);
 		mainPage.add(comboBox);
 		
-		JLabel label_4 = new JLabel("\uB300\uC5EC \uC2DC\uC791\uC77C");
-		label_4.setFont(new Font("나눔고딕", Font.BOLD, 20));
-		label_4.setBounds(944, 157, 120, 41);
-		mainPage.add(label_4);
+		JButton button_3 = new JButton("\uB300\uC5EC\uD558\uAE30");
+		button_3.setFont(new Font("나눔고딕", Font.BOLD, 20));
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String locknum = comboBox.getSelectedItem().toString();
+				int stringToint = Integer.parseInt(locknum);
+				
+				if(Locker.getLockerState(stringToint) == 1) {
+					JOptionPane.showMessageDialog(null, "선택한 사물함은 이미 대여중입니다.");
+				} else if(Locker.getLockerState(stringToint) != 1){
+					if(student.checkEmpty(idd) == 1) {
+						JOptionPane.showMessageDialog(null, "이미 대여중인 사물함이 있습니다.\n 먼저 반납해주세요.");
+					}
+					if(student.checkEmpty(idd) == 0) {
+						Locker.getLent(stringToint, student.getId(idd,stringToint));
+						JOptionPane.showMessageDialog(null, "사물함을 대여하였습니다.");
+				}
+					
+				}
+				
+				
+				
+	
+				
+				if(Locker.getLockerState(1)==1) {
+					locker1.setBackground(Color.red);
+				} else {
+					locker1.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(2)==1) {
+					locker2.setBackground(Color.red);
+				} else {
+					locker2.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(3)==1) {
+					locker3.setBackground(Color.red);
+				} else {
+					locker3.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(4)==1) {
+					locker4.setBackground(Color.red);
+				} else {
+					locker4.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(5)==1) {
+					locker5.setBackground(Color.red);
+				} else {
+					locker5.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(6)==1) {
+					locker6.setBackground(Color.red);
+				} else {
+					locker6.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(7)==1) {
+					locker7.setBackground(Color.red);
+				} else {
+					locker7.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(8)==1) {
+					locker8.setBackground(Color.red);
+				} else {
+					locker8.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(9)==1) {
+					locker9.setBackground(Color.red);
+				} else {
+					locker9.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(10)==1) {
+					locker10.setBackground(Color.red);
+				} else {
+					locker10.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(11)==1) {
+					locker11.setBackground(Color.red);
+				} else {
+					locker11.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(12)==1) {
+					locker12.setBackground(Color.red);
+				} else {
+					locker12.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(13)==1) {
+					locker13.setBackground(Color.red);
+				} else {
+					locker13.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(14)==1) {
+					locker14.setBackground(Color.red);
+				} else {
+					locker14.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(15)==1) {
+					locker15.setBackground(Color.red);
+				} else {
+					locker15.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(16)==1) {
+					locker16.setBackground(Color.red);
+				} else {
+					locker16.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(17)==1) {
+					locker17.setBackground(Color.red);
+				} else {
+					locker17.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(18)==1) {
+					locker18.setBackground(Color.red);
+				} else {
+					locker18.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(19)==1) {
+					locker19.setBackground(Color.red);
+				} else {
+					locker19.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(20)==1) {
+					locker20.setBackground(Color.red);
+				} else {
+					locker20.setBackground(Color.green);
+				}
+				
+				if(Locker.getLockerState(21)==1) {
+					locker21.setBackground(Color.red);
+				} else {
+					locker21.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(22)==1) {
+					locker22.setBackground(Color.red);
+				} else {
+					locker22.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(23)==1) {
+					locker23.setBackground(Color.red);
+				} else {
+					locker23.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(24)==1) {
+					locker24.setBackground(Color.red);
+				} else {
+					locker24.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(25)==1) {
+					locker25.setBackground(Color.red);
+				} else {
+					locker25.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(26)==1) {
+					locker26.setBackground(Color.red);
+				} else {
+					locker26.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(27)==1) {
+					locker27.setBackground(Color.red);
+				} else {
+					locker27.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(28)==1) {
+					locker28.setBackground(Color.red);
+				} else {
+					locker28.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(29)==1) {
+					locker29.setBackground(Color.red);
+				} else {
+					locker29.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(30)==1) {
+					locker30.setBackground(Color.red);
+				} else {
+					locker30.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(31)==1) {
+					locker31.setBackground(Color.red);
+				} else {
+					locker31.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(32)==1) {
+					locker32.setBackground(Color.red);
+				} else {
+					locker32.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(33)==1) {
+					locker33.setBackground(Color.red);
+				} else {
+					locker33.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(34)==1) {
+					locker34.setBackground(Color.red);
+				} else {
+					locker34.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(35)==1) {
+					locker35.setBackground(Color.red);
+				} else {
+					locker35.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(36)==1) {
+					locker36.setBackground(Color.red);
+				} else {
+					locker36.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(37)==1) {
+					locker37.setBackground(Color.red);
+				} else {
+					locker37.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(38)==1) {
+					locker38.setBackground(Color.red);
+				} else {
+					locker38.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(39)==1) {
+					locker39.setBackground(Color.red);
+				} else {
+					locker39.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(40)==1) {
+					locker40.setBackground(Color.red);
+				} else {
+					locker40.setBackground(Color.green);
+				}
+				
+				if(Locker.getLockerState(41)==1) {
+					locker41.setBackground(Color.red);
+				} else {
+					locker41.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(42)==1) {
+					locker42.setBackground(Color.red);
+				} else {
+					locker42.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(43)==1) {
+					locker43.setBackground(Color.red);
+				} else {
+					locker43.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(44)==1) {
+					locker44.setBackground(Color.red);
+				} else {
+					locker44.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(45)==1) {
+					locker45.setBackground(Color.red);
+				} else {
+					locker45.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(46)==1) {
+					locker46.setBackground(Color.red);
+				} else {
+					locker46.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(47)==1) {
+					locker47.setBackground(Color.red);
+				} else {
+					locker47.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(48)==1) {
+					locker48.setBackground(Color.red);
+				} else {
+					locker48.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(49)==1) {
+					locker49.setBackground(Color.red);
+				} else {
+					locker49.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(50)==1) {
+					locker50.setBackground(Color.red);
+				} else {
+					locker50.setBackground(Color.green);
+				}
+				
+				if(Locker.getLockerState(51)==1) {
+					locker51.setBackground(Color.red);
+				} else {
+					locker51.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(52)==1) {
+					locker52.setBackground(Color.red);
+				} else {
+					locker52.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(53)==1) {
+					locker53.setBackground(Color.red);
+				} else {
+					locker53.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(54)==1) {
+					locker54.setBackground(Color.red);
+				} else {
+					locker54.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(55)==1) {
+					locker55.setBackground(Color.red);
+				} else {
+					locker55.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(56)==1) {
+					locker56.setBackground(Color.red);
+				} else {
+					locker56.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(57)==1) {
+					locker57.setBackground(Color.red);
+				} else {
+					locker57.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(58)==1) {
+					locker58.setBackground(Color.red);
+				} else {
+					locker58.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(59)==1) {
+					locker59.setBackground(Color.red);
+				} else {
+					locker59.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(60)==1) {
+					locker60.setBackground(Color.red);
+				} else {
+					locker60.setBackground(Color.green);
+				}
+				
+
+			}
+		});
+		button_3.setBounds(944, 418, 296, 203);
+		mainPage.add(button_3);
 		
-		JLabel label_7 = new JLabel("\uB300\uC5EC \uC885\uB8CC\uC77C");
-		label_7.setFont(new Font("나눔고딕", Font.BOLD, 20));
-		label_7.setBounds(944, 286, 120, 35);
-		mainPage.add(label_7);
+		JButton button_4 = new JButton("\uBC18\uB0A9\uD558\uAE30");
+		button_4.setFont(new Font("나눔고딕", Font.BOLD, 20));
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(student.checkEmpty(idd) == 0) {
+					JOptionPane.showMessageDialog(null, "반납할 사물함이 없습니다.");
+					
+				}
+				if(student.checkEmpty(idd) == 1) {
+					Locker.getRtnL(student.getRtnS(idd));
+					JOptionPane.showMessageDialog(null, "사물함을 반납하였습니다.");
+				}
+				
+				if(Locker.getLockerState(1)==1) {
+					locker1.setBackground(Color.red);
+				} else {
+					locker1.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(2)==1) {
+					locker2.setBackground(Color.red);
+				} else {
+					locker2.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(3)==1) {
+					locker3.setBackground(Color.red);
+				} else {
+					locker3.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(4)==1) {
+					locker4.setBackground(Color.red);
+				} else {
+					locker4.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(5)==1) {
+					locker5.setBackground(Color.red);
+				} else {
+					locker5.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(6)==1) {
+					locker6.setBackground(Color.red);
+				} else {
+					locker6.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(7)==1) {
+					locker7.setBackground(Color.red);
+				} else {
+					locker7.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(8)==1) {
+					locker8.setBackground(Color.red);
+				} else {
+					locker8.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(9)==1) {
+					locker9.setBackground(Color.red);
+				} else {
+					locker9.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(10)==1) {
+					locker10.setBackground(Color.red);
+				} else {
+					locker10.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(11)==1) {
+					locker11.setBackground(Color.red);
+				} else {
+					locker11.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(12)==1) {
+					locker12.setBackground(Color.red);
+				} else {
+					locker12.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(13)==1) {
+					locker13.setBackground(Color.red);
+				} else {
+					locker13.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(14)==1) {
+					locker14.setBackground(Color.red);
+				} else {
+					locker14.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(15)==1) {
+					locker15.setBackground(Color.red);
+				} else {
+					locker15.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(16)==1) {
+					locker16.setBackground(Color.red);
+				} else {
+					locker16.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(17)==1) {
+					locker17.setBackground(Color.red);
+				} else {
+					locker17.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(18)==1) {
+					locker18.setBackground(Color.red);
+				} else {
+					locker18.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(19)==1) {
+					locker19.setBackground(Color.red);
+				} else {
+					locker19.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(20)==1) {
+					locker20.setBackground(Color.red);
+				} else {
+					locker20.setBackground(Color.green);
+				}
+				
+				if(Locker.getLockerState(21)==1) {
+					locker21.setBackground(Color.red);
+				} else {
+					locker21.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(22)==1) {
+					locker22.setBackground(Color.red);
+				} else {
+					locker22.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(23)==1) {
+					locker23.setBackground(Color.red);
+				} else {
+					locker23.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(24)==1) {
+					locker24.setBackground(Color.red);
+				} else {
+					locker24.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(25)==1) {
+					locker25.setBackground(Color.red);
+				} else {
+					locker25.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(26)==1) {
+					locker26.setBackground(Color.red);
+				} else {
+					locker26.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(27)==1) {
+					locker27.setBackground(Color.red);
+				} else {
+					locker27.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(28)==1) {
+					locker28.setBackground(Color.red);
+				} else {
+					locker28.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(29)==1) {
+					locker29.setBackground(Color.red);
+				} else {
+					locker29.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(30)==1) {
+					locker30.setBackground(Color.red);
+				} else {
+					locker30.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(31)==1) {
+					locker31.setBackground(Color.red);
+				} else {
+					locker31.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(32)==1) {
+					locker32.setBackground(Color.red);
+				} else {
+					locker32.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(33)==1) {
+					locker33.setBackground(Color.red);
+				} else {
+					locker33.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(34)==1) {
+					locker34.setBackground(Color.red);
+				} else {
+					locker34.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(35)==1) {
+					locker35.setBackground(Color.red);
+				} else {
+					locker35.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(36)==1) {
+					locker36.setBackground(Color.red);
+				} else {
+					locker36.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(37)==1) {
+					locker37.setBackground(Color.red);
+				} else {
+					locker37.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(38)==1) {
+					locker38.setBackground(Color.red);
+				} else {
+					locker38.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(39)==1) {
+					locker39.setBackground(Color.red);
+				} else {
+					locker39.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(40)==1) {
+					locker40.setBackground(Color.red);
+				} else {
+					locker40.setBackground(Color.green);
+				}
+				
+				if(Locker.getLockerState(41)==1) {
+					locker41.setBackground(Color.red);
+				} else {
+					locker41.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(42)==1) {
+					locker42.setBackground(Color.red);
+				} else {
+					locker42.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(43)==1) {
+					locker43.setBackground(Color.red);
+				} else {
+					locker43.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(44)==1) {
+					locker44.setBackground(Color.red);
+				} else {
+					locker44.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(45)==1) {
+					locker45.setBackground(Color.red);
+				} else {
+					locker45.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(46)==1) {
+					locker46.setBackground(Color.red);
+				} else {
+					locker46.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(47)==1) {
+					locker47.setBackground(Color.red);
+				} else {
+					locker47.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(48)==1) {
+					locker48.setBackground(Color.red);
+				} else {
+					locker48.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(49)==1) {
+					locker49.setBackground(Color.red);
+				} else {
+					locker49.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(50)==1) {
+					locker50.setBackground(Color.red);
+				} else {
+					locker50.setBackground(Color.green);
+				}
+				
+				if(Locker.getLockerState(51)==1) {
+					locker51.setBackground(Color.red);
+				} else {
+					locker51.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(52)==1) {
+					locker52.setBackground(Color.red);
+				} else {
+					locker52.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(53)==1) {
+					locker53.setBackground(Color.red);
+				} else {
+					locker53.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(54)==1) {
+					locker54.setBackground(Color.red);
+				} else {
+					locker54.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(55)==1) {
+					locker55.setBackground(Color.red);
+				} else {
+					locker55.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(56)==1) {
+					locker56.setBackground(Color.red);
+				} else {
+					locker56.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(57)==1) {
+					locker57.setBackground(Color.red);
+				} else {
+					locker57.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(58)==1) {
+					locker58.setBackground(Color.red);
+				} else {
+					locker58.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(59)==1) {
+					locker59.setBackground(Color.red);
+				} else {
+					locker59.setBackground(Color.green);
+				}
+
+				if(Locker.getLockerState(60)==1) {
+					locker60.setBackground(Color.red);
+				} else {
+					locker60.setBackground(Color.green);
+				}
+				
+			}
+		});
+		
+		button_4.setBounds(944, 673, 296, 68);
+		mainPage.add(button_4);
 		
 		JButton refreshBtn = new JButton("\uC0C8\uB85C\uACE0\uCE68");
 		refreshBtn.addActionListener(new ActionListener() {
@@ -1275,6 +1990,16 @@ public class Login{
 		refreshBtn.setBounds(789, 12, 141, 35);
 		mainPage.add(refreshBtn);
 		
+		JLabel label_4 = new JLabel("\uB300\uC5EC \uC2DC\uC791\uC77C");
+		label_4.setFont(new Font("나눔고딕", Font.BOLD, 20));
+		label_4.setBounds(944, 157, 120, 41);
+		mainPage.add(label_4);
+		
+		JLabel label_7 = new JLabel("\uB300\uC5EC \uC885\uB8CC\uC77C");
+		label_7.setFont(new Font("나눔고딕", Font.BOLD, 20));
+		label_7.setBounds(944, 286, 120, 35);
+		mainPage.add(label_7);
+		
 		JPanel changeInfo = new JPanel();
 		changeInfo.setLayout(null);
 		panel_1.add(changeInfo, "회원정보수정");
@@ -1282,6 +2007,7 @@ public class Login{
 		JButton button = new JButton("\uC218\uC815\uD558\uAE30");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "회원정보가 수정되었습니다.");
 				CardLayout c=(CardLayout)(panel_1.getLayout());
 				c.show(panel_1, "메인");
 			}
@@ -1339,7 +2065,7 @@ public class Login{
 		label_24.setFont(new Font("굴림", Font.PLAIN, 30));
 		label_24.setBounds(14, 12, 283, 35);
 		changeInfo.add(label_24);
-//		comboBox.addItem();
+
 		
 		
 

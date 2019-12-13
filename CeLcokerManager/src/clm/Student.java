@@ -6,21 +6,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.swing.JTextField;
+
 public class Student {
 	public static void main(String[] args) {
-		getConnection();
+//		getConnection();
 //		createStudent(234567, "김길동", "234567", "234567");
-		ArrayList<String> list = getStudents();
-		for(String item: list) {
-			System.out.println(item);
-		}
+//		ArrayList<String> list = getStudents();
+//		for(String item: list) {
+//			System.out.println(item);
+//		}
 		
+//		getLogin("163312","163312");
+//		System.out.println(getLogin("163312","163312"));
+//		System.out.println(getId("163312"));
+//		System.out.println(checkEmpty("163399"));
+//		checkEmpty("163399","10");
+//		System.out.println(getRtn("163312"));
 	}
 	
 	
-//	public String getStdnum() {
-//		return stdnum;
-//	}
 	
 	
 	public static ArrayList<String> getStudents(){
@@ -58,15 +63,115 @@ public class Student {
 		}
 	}
 	
-	
-	
-	public static void createTable() {
+
+	public static int getLogin(String id, String password) {
+		 
 		try {
+			Connection con = getConnection();
+			PreparedStatement login = con.prepareStatement("SELECT * FROM student");
+			ResultSet results = login.executeQuery();
 			
-		}catch(Exception e) {
+			while (results.next()) {
+				if(results.getString("id").equals(id)&&results.getString("password").equals(password)){
+					System.out.println("로그인 성공");
+					return 1;
+				} else {
+					System.out.println("매칭중");
+				}
+
+			}
+				
+		}catch (Exception e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
+
 		}
+		return 0;
 	}
+	
+	public static String getId(String id, int num) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement login = con.prepareStatement("SELECT name FROM student WHERE id ='"+id+"'");
+			ResultSet results = login.executeQuery();
+			PreparedStatement insertBrwLockNum = con.prepareStatement("UPDATE student SET brwLockNum = '"+num+"' WHERE id='"+id+"'" );
+			insertBrwLockNum.executeUpdate();
+			
+			while(results.next()) {
+				String getID = results.getString("name");
+				System.out.println(getID);
+				return getID;
+			}
+	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static int checkEmpty(String id) {
+		String empty = "0";
+		try {
+			Connection con = getConnection();
+			PreparedStatement check = con.prepareStatement("SELECT brwLockNum FROM student WHERE id ='"+id+"' ");
+			ResultSet results = check.executeQuery();
+			
+			//로그인 할때 사용한 아이디를 받아서 그 아이디의 brwLockNum이  0이나 null값이 아니면 반납먼저(0리턴), 그렇지 않으면, 대여가능 1리턴
+			
+			while (results.next()) {
+				if(!results.getString("brwLockNum").equals(empty)){
+					System.out.println("이미 대여중인 사물함이 있습니다. 먼저 반납해주세요.");
+					return 1;
+				} else {
+					System.out.println("탐색중...");
+				}
+
+			}
+				
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+
+		}
+		System.out.println("대여가능합니다.");
+		return 0;
+	}
+	
+	public static int getRtnS(String id) {
+		String empty = "0";
+		String backupLocknum = null;
+		
+		
+		try {
+			Connection con = getConnection();
+			PreparedStatement check = con.prepareStatement("SELECT brwLockNum FROM student WHERE id ='"+id+"'");
+			ResultSet results = check.executeQuery();
+			
+			while (results.next()) {
+				if(!results.getString("brwLockNum").equals(empty)){
+					backupLocknum = results.getString("brwLockNum");
+					break;
+				} else {
+					System.out.println("탐색중...");
+				}
+			
+			}
+		
+			int rtnNum = Integer.parseInt(backupLocknum);
+			//업데이트
+			PreparedStatement resetLocker = con.prepareStatement("UPDATE student SET brwLockNum = 0 WHERE id='"+id+"'" );
+			resetLocker.executeUpdate();
+			return rtnNum;
+			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+
+		}
+		return 0;
+	}
+	
+	
 	
 	public static Connection getConnection() {
 		try {
