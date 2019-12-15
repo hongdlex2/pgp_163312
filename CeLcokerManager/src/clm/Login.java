@@ -2,6 +2,8 @@ package clm;
 
 import java.awt.EventQueue;
 import java.sql.*;
+import java.text.DateFormat;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -37,6 +39,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 
@@ -51,12 +55,17 @@ public class Login{
 	private JPasswordField txtPass;
 	private JTable allStateTable;
 	private JTable myStateTable;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private String idd;
-
+	private JTextField chPass;
+	private JTextField chId;
+	private JTextField chName;
+	private JTextField chStdnum;
+	private String idd = "163312";
+	private String[][] data;
+	private String[][] data2;
+	private String[] headers;
+	private DefaultTableModel model;
+	private DefaultTableModel model2;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -138,6 +147,13 @@ public class Login{
 				JButton logBtn = new JButton("\uB85C\uADF8\uC778");
 				logBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+//						refreshBtn.actionperfomed();
+//						myStateTable.repaint();
+//						myStateTable.revalidate();
+//						
+//						model.fireTableDataChanged();
+//						myStateTable.setModel(model2);
+						
 						
 						idd = txtID.getText();
 						String pass = txtPass.getText();
@@ -149,7 +165,7 @@ public class Login{
 							txtID.setText("");
 							txtPass.setText("");
 							
-							
+
 							
 							CardLayout c=(CardLayout)(panel_1.getLayout());
 							c.show(panel_1, "메인");
@@ -287,10 +303,24 @@ public class Login{
 		JButton btnNewButton = new JButton("\uD68C\uC6D0\uC815\uBCF4\uC218\uC815");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String one = Student.rtnPass(idd);
+				String two = Student.rtnName(idd);
+				String three = Student.rtnStdnum(idd);
+				
+				
+				chId.setText(idd);
+				chPass.setText(one);
+				chName.setText(two);
+				chStdnum.setText(three);
+				
 				CardLayout c=(CardLayout)(panel_1.getLayout());
 				c.show(panel_1, "회원정보수정");
 			}
 		});
+		
+		final JLabel logInfo = new JLabel("dfa");
+		logInfo.setBounds(534, 12, 158, 35);
+		mainPage.add(logInfo);
 		btnNewButton.setBounds(944, 12, 141, 35);
 		mainPage.add(btnNewButton);
 		
@@ -801,29 +831,14 @@ public class Login{
 		
 
 		
-		String[][] data = locker.getLockers();
 		
-		String[] headers = new String[] {"사물함 번호", "대여상태","대여자","대여 시작일","대여 종료일"};
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(14, 418, 916, 202);
-		mainPage.add(scrollPane_1);
-		allStateTable = new JTable(data, headers);
-		scrollPane_1.setViewportView(allStateTable);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(14, 673, 916, 68);
-		mainPage.add(scrollPane);
-		
-		myStateTable = new JTable(data,headers);
-		scrollPane.setViewportView(myStateTable);
 		
 		JLabel label_6 = new JLabel("\uC0AC\uBB3C\uD568 \uC120\uD0DD");
 		label_6.setFont(new Font("나눔고딕", Font.BOLD, 20));
 		label_6.setBounds(944, 71, 120, 18);
 		mainPage.add(label_6);
 		
-		JDateChooser dateChooser = new JDateChooser();
+		final JDateChooser dateChooser = new JDateChooser(); 
 		dateChooser.setBounds(944, 200, 296, 35);
 		mainPage.add(dateChooser);
 		
@@ -856,6 +871,10 @@ public class Login{
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+//				Date date = dateChooser.getDate(); 
+//				String strDate = DateFormat.getDateInstance().format(date);
+//				System.out.println(strDate);
+				
 				String locknum = comboBox.getSelectedItem().toString();
 				int stringToint = Integer.parseInt(locknum);
 				
@@ -871,11 +890,24 @@ public class Login{
 				}
 					
 				}
+
+//				data = Locker.getLockers();
 				
 				
 				
-	
+//				DefaultTableModel model = (DefaultTableModel) allStateTable.getModel();
+//				model.setDataVector(data, headers);
+//				DefaultTableModel model = new DefaultTableModel(data,headers);
+//				JTable table = new JTable(model);
 				
+				allStateTable.repaint();
+				allStateTable.revalidate();
+				
+				model.fireTableDataChanged();
+				allStateTable.setModel(model);
+
+				
+
 				if(Locker.getLockerState(1)==1) {
 					locker1.setBackground(Color.red);
 				} else {
@@ -1235,7 +1267,7 @@ public class Login{
 				} else {
 					locker60.setBackground(Color.green);
 				}
-				
+
 
 			}
 		});
@@ -1616,6 +1648,8 @@ public class Login{
 					locker60.setBackground(Color.green);
 				}
 				
+				
+				
 			}
 		});
 		
@@ -1987,6 +2021,31 @@ public class Login{
 				}
 			}
 		});
+		
+		String mylocker = student.rtnName(idd);
+		System.out.println(idd);
+		System.out.println(mylocker);
+		data = locker.getLockers();
+		data2 = locker.getMyLocker(mylocker);
+		headers = new String[] {"사물함 번호", "대여상태","대여자","대여 시작일","대여 종료일"};
+		
+		
+		model = new DefaultTableModel(data,headers);
+		model2 = new DefaultTableModel(data2,headers);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(14, 418, 916, 202);
+		mainPage.add(scrollPane_1);
+//		allStateTable = new JTable(data, headers);
+		allStateTable = new JTable(model);
+		scrollPane_1.setViewportView(allStateTable);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(14, 673, 916, 68);
+		mainPage.add(scrollPane);
+		
+		myStateTable = new JTable(model2);
+		scrollPane.setViewportView(myStateTable);
 		refreshBtn.setBounds(789, 12, 141, 35);
 		mainPage.add(refreshBtn);
 		
@@ -2007,7 +2066,28 @@ public class Login{
 		JButton button = new JButton("\uC218\uC815\uD558\uAE30");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String idTxt = null;
+				String passTxt = null;
+				String nameTxt = null;
+				String stdnumTxt = null;
+				
+				
+				
+				
+				idTxt = chId.getText();
+				passTxt = chPass.getText();
+				nameTxt = chName.getText();
+				stdnumTxt = chStdnum.getText();
+				
+				Student.updateStudent(stdnumTxt, nameTxt, idTxt, passTxt,idd);
 				JOptionPane.showMessageDialog(null, "회원정보가 수정되었습니다.");
+				
+				chId.setText("");
+				chPass.setText("");
+				chName.setText("");
+				chStdnum.setText("");
+				
 				CardLayout c=(CardLayout)(panel_1.getLayout());
 				c.show(panel_1, "메인");
 			}
@@ -2025,15 +2105,15 @@ public class Login{
 		button_1.setBounds(646, 510, 202, 71);
 		changeInfo.add(button_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(517, 284, 355, 36);
-		changeInfo.add(textField_1);
+		chPass = new JTextField();
+		chPass.setColumns(10);
+		chPass.setBounds(517, 284, 355, 36);
+		changeInfo.add(chPass);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(517, 236, 355, 36);
-		changeInfo.add(textField_2);
+		chId = new JTextField();
+		chId.setColumns(10);
+		chId.setBounds(517, 236, 355, 36);
+		changeInfo.add(chId);
 		
 		JLabel label_20 = new JLabel("ID");
 		label_20.setBounds(389, 236, 90, 18);
@@ -2043,15 +2123,15 @@ public class Login{
 		label_21.setBounds(389, 284, 102, 18);
 		changeInfo.add(label_21);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(517, 332, 355, 36);
-		changeInfo.add(textField_3);
+		chName = new JTextField();
+		chName.setColumns(10);
+		chName.setBounds(517, 332, 355, 36);
+		changeInfo.add(chName);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(517, 386, 355, 36);
-		changeInfo.add(textField_4);
+		chStdnum = new JTextField();
+		chStdnum.setColumns(10);
+		chStdnum.setBounds(517, 386, 355, 36);
+		changeInfo.add(chStdnum);
 		
 		JLabel label_22 = new JLabel("\uC774\uB984");
 		label_22.setBounds(389, 341, 102, 18);

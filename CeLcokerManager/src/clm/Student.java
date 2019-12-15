@@ -23,6 +23,10 @@ public class Student {
 //		System.out.println(checkEmpty("163399"));
 //		checkEmpty("163399","10");
 //		System.out.println(getRtn("163312"));
+//		updateStudent("888888","test02","test02","test02","test001");
+		System.out.println(rtnPass("163312"));
+		System.out.println(rtnName("163312"));
+		System.out.println(rtnStdnum("163312"));
 	}
 	
 	
@@ -62,7 +66,24 @@ public class Student {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
+	public static void updateStudent(String stdnum, String name, String id, String password,     String checkId) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement updateStdnum = con.prepareStatement("UPDATE student SET stdnum = '"+stdnum+"' WHERE id='"+checkId+"'" );
+			updateStdnum.executeUpdate();
+			PreparedStatement updateName = con.prepareStatement("UPDATE student SET name = '"+name+"' WHERE id='"+checkId+"'" );
+			updateName.executeUpdate();
+			PreparedStatement updatePass = con.prepareStatement("UPDATE student SET password = '"+password+"' WHERE id='"+checkId+"'" );
+			updatePass.executeUpdate();
+			PreparedStatement updateId = con.prepareStatement("UPDATE student SET id = '"+id+"' WHERE id='"+checkId+"'" );
+			updateId.executeUpdate();
+			
+		
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 	public static int getLogin(String id, String password) {
 		 
@@ -109,6 +130,60 @@ public class Student {
 		return null;
 	}
 	
+	public static String rtnPass(String id) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement login = con.prepareStatement("SELECT password FROM student WHERE id ='"+id+"'");
+			ResultSet results = login.executeQuery();
+			
+			while(results.next()) {
+				String getPass = results.getString("password");
+				System.out.println(getPass);
+				return getPass;
+			}
+	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static String rtnName(String id) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement login = con.prepareStatement("SELECT name FROM student WHERE id ='"+id+"'");
+			ResultSet results = login.executeQuery();
+			
+			while(results.next()) {
+				String getPass = results.getString("name");
+				System.out.println(getPass);
+				return getPass;
+			}
+	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static String rtnStdnum(String id) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement login = con.prepareStatement("SELECT stdnum FROM student WHERE id ='"+id+"'");
+			ResultSet results = login.executeQuery();
+			
+			while(results.next()) {
+				String getPass = results.getString("stdnum");
+				System.out.println(getPass);
+				return getPass;
+			}
+	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static int checkEmpty(String id) {
 		String empty = "0";
 		try {
@@ -133,7 +208,7 @@ public class Student {
 			e.printStackTrace();
 
 		}
-		System.out.println("대여가능합니다.");
+//		System.out.println("대여가능합니다.");
 		return 0;
 	}
 	

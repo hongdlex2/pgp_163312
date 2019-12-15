@@ -20,7 +20,7 @@ public class Locker {
 //		System.out.println(getLockerState(9));
 //		getLent(5);
 //		getRtnL(10);
-
+		
 	}
 	
 	public static void createStudent(String stdnum, String name, String id, String password) {
@@ -46,7 +46,7 @@ public class Locker {
 			PreparedStatement insertBorrower = con.prepareStatement("UPDATE locker SET borrower = '"+name+"' WHERE lockernum='"+lockernum+"'" );
 				insertState.executeUpdate();
 				insertBorrower.executeUpdate();
-				System.out.println("회원정보가 등록되었습니다.");
+//				System.out.println("회원정보가 등록되었습니다.");
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		
@@ -103,6 +103,32 @@ public class Locker {
 		}
 	}
 	
+	public static String[][] getMyLocker(String name){
+		try {
+			System.out.println(name);
+			Connection con = getConnection();
+			PreparedStatement statement = con.prepareStatement("Select lockernum, state, borrower, startdate, enddate FROM locker WHERE borrower ='"+name+"'");
+			ResultSet results = statement.executeQuery();
+			ArrayList<String[]> list = new ArrayList<String[]>();
+			while(results.next()) {
+				list.add(new String[]{
+					results.getString("lockernum"),
+					results.getString("state"),
+					results.getString("borrower"),
+					results.getString("startdate"),
+					results.getString("enddate")
+				});
+				
+			}
+			System.out.println("내 사물함 정보를 불러왔습니다.");
+			String[][] arr = new String[list.size()][5];
+			return list.toArray(arr);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
 	public static int getLockerState(int num) {
 		String lent = "대여중";
 		try {
@@ -112,19 +138,21 @@ public class Locker {
 			
 			while(results.first()) {
 				String lockerState = results.getString("state");
-				System.out.println(lockerState);
+	//			System.out.println(lockerState);
 
 					if(lockerState.equals(lent)) {
-						System.out.println(lockerState);
-						System.out.println("리턴 1을 합니다.");
+//						System.out.println(lockerState);
+//						System.out.println("리턴 1을 합니다.");
 						return 1;
 					} else {
-						System.out.println(lockerState);
-						System.out.println("리턴 0을 합니다.");
+//						System.out.println(lockerState);
+//						System.out.println("리턴 0을 합니다.");
 						return 0;
-					}
+					}		
 			}
-				
+			con.close();
+			statement.close();
+			results.close();
 			
 		} catch (Exception e) {
 			
@@ -147,7 +175,7 @@ public class Locker {
 				String lockerNumber = results.getString("lockernum");
 				rtn[cnt] = lockerNumber;
 				cnt = cnt+1;
-				System.out.println(lockerNumber);
+//				System.out.println(lockerNumber);
 			}
 			return rtn;
 			
@@ -168,7 +196,7 @@ public class Locker {
 			
 			Class.forName(driver);
 			Connection con = DriverManager.getConnection(url, user, pass);
-			System.out.println("Locker class : 데이터베이스에 성공적으로 연결하였습니다.");
+//			System.out.println("Locker class : 데이터베이스에 성공적으로 연결하였습니다.");
 			return con;
 			
 		}catch(Exception e){
