@@ -10,8 +10,8 @@ import javax.swing.JTextArea;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
- 
-//"C:\\SPB_Data\\git\\pgp_163312\\CeLcokerManager\\image"
+ //
+
 public class Pictest {
 
 	private JFrame frame;
