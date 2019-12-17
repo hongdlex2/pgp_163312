@@ -1707,13 +1707,35 @@ public class Login{
 		refreshBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				startDate2 = startSpin.getValue().toString();
+//				startDate2 = startSpin.getValue().toString();
 
 //				startDate2 = (String)startSpin.getSelectedItem();
 				
 //				System.out.println(startDate2);
 //				endDate2 = (String)startSpin.getValue();
-				System.out.println(endDate2);
+//				System.out.println(endDate2);
+				
+				
+				data = Locker.getLockers();
+				model = new DefaultTableModel(data,headers);
+				
+				
+				
+				mylocker = student.rtnName(idd);
+				
+				data2 = Locker.getMyLocker(mylocker);
+				
+				model2 = new DefaultTableModel(data2,headers);
+				
+				allStateTable.repaint();
+				allStateTable.revalidate();
+				model.fireTableDataChanged();
+				allStateTable.setModel(model);
+				
+				myStateTable.repaint();
+				myStateTable.revalidate();
+				model2.fireTableDataChanged();
+				myStateTable.setModel(model2);
 				
 				
 				if(Locker.getLockerState(1)==1) {
