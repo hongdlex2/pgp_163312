@@ -59,13 +59,17 @@ public class Login{
 	private JTextField chId;
 	private JTextField chName;
 	private JTextField chStdnum;
-	private String idd = "163312";
+	private String idd;
 	private String[][] data;
 	private String[][] data2;
 	private String[] headers;
 	private DefaultTableModel model;
 	private DefaultTableModel model2;
-	
+	private String mylocker;
+	private String startDate;
+	private String endDate;
+	private String startDate2;
+	private String endDate2;
 	/**
 	 * Launch the application.
 	 */
@@ -147,12 +151,7 @@ public class Login{
 				JButton logBtn = new JButton("\uB85C\uADF8\uC778");
 				logBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-//						refreshBtn.actionperfomed();
-//						myStateTable.repaint();
-//						myStateTable.revalidate();
-//						
-//						model.fireTableDataChanged();
-//						myStateTable.setModel(model2);
+
 						
 						
 						idd = txtID.getText();
@@ -317,10 +316,6 @@ public class Login{
 				c.show(panel_1, "회원정보수정");
 			}
 		});
-		
-		final JLabel logInfo = new JLabel("dfa");
-		logInfo.setBounds(534, 12, 158, 35);
-		mainPage.add(logInfo);
 		btnNewButton.setBounds(944, 12, 141, 35);
 		mainPage.add(btnNewButton);
 		
@@ -351,7 +346,7 @@ public class Login{
 		
 		final JToggleButton locker1 = new JToggleButton("0");
 		locker1.setEnabled(false);
-		locker1.setToolTipText("01");
+		locker1.setToolTipText("1");
 		locker1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -362,85 +357,85 @@ public class Login{
 		
 		final JToggleButton locker2 = new JToggleButton("0");
 		locker2.setEnabled(false);
-		locker2.setToolTipText("01");
+		locker2.setToolTipText("2");
 		locker2.setBounds(49, 59, 35, 42);
 		panel.add(locker2);
 		
 		final JToggleButton locker3 = new JToggleButton("0");
 		locker3.setEnabled(false);
-		locker3.setToolTipText("01");
+		locker3.setToolTipText("3");
 		locker3.setBounds(85, 59, 35, 42);
 		panel.add(locker3);
 		
 		final JToggleButton locker4 = new JToggleButton("0");
 		locker4.setEnabled(false);
-		locker4.setToolTipText("01");
+		locker4.setToolTipText("4");
 		locker4.setBounds(121, 59, 35, 42);
 		panel.add(locker4);
 		
 		final JToggleButton locker5 = new JToggleButton("0");
 		locker5.setEnabled(false);
-		locker5.setToolTipText("01");
+		locker5.setToolTipText("5");
 		locker5.setBounds(157, 59, 35, 42);
 		panel.add(locker5);
 		
 		final JToggleButton locker21 = new JToggleButton("0");
 		locker21.setEnabled(false);
-		locker21.setToolTipText("01");
+		locker21.setToolTipText("21");
 		locker21.setBounds(14, 101, 35, 42);
 		panel.add(locker21);
 		
 		final JToggleButton locker22 = new JToggleButton("0");
 		locker22.setEnabled(false);
-		locker22.setToolTipText("01");
+		locker22.setToolTipText("22");
 		locker22.setBounds(49, 101, 35, 42);
 		panel.add(locker22);
 		
 		final JToggleButton locker23 = new JToggleButton("0");
 		locker23.setEnabled(false);
-		locker23.setToolTipText("01");
+		locker23.setToolTipText("23");
 		locker23.setBounds(85, 101, 35, 42);
 		panel.add(locker23);
 		
 		final JToggleButton locker24 = new JToggleButton("0");
 		locker24.setEnabled(false);
-		locker24.setToolTipText("01");
+		locker24.setToolTipText("24");
 		locker24.setBounds(121, 101, 35, 42);
 		panel.add(locker24);
 		
 		final JToggleButton locker25 = new JToggleButton("0");
 		locker25.setEnabled(false);
-		locker25.setToolTipText("01");
+		locker25.setToolTipText("25");
 		locker25.setBounds(157, 101, 35, 42);
 		panel.add(locker25);
 		
 		final JToggleButton locker41 = new JToggleButton("0");
 		locker41.setEnabled(false);
-		locker41.setToolTipText("01");
+		locker41.setToolTipText("41");
 		locker41.setBounds(14, 143, 35, 42);
 		panel.add(locker41);
 		
 		final JToggleButton locker42 = new JToggleButton("0");
 		locker42.setEnabled(false);
-		locker42.setToolTipText("01");
+		locker42.setToolTipText("42");
 		locker42.setBounds(49, 143, 35, 42);
 		panel.add(locker42);
 		
 		final JToggleButton locker43 = new JToggleButton("0");
 		locker43.setEnabled(false);
-		locker43.setToolTipText("01");
+		locker43.setToolTipText("43");
 		locker43.setBounds(85, 143, 35, 42);
 		panel.add(locker43);
 		
 		final JToggleButton locker44 = new JToggleButton("0");
 		locker44.setEnabled(false);
-		locker44.setToolTipText("01");
+		locker44.setToolTipText("44");
 		locker44.setBounds(121, 143, 35, 42);
 		panel.add(locker44);
 		
 		final JToggleButton locker45 = new JToggleButton("0");
 		locker45.setEnabled(false);
-		locker45.setToolTipText("01");
+		locker45.setToolTipText("45");
 		locker45.setBounds(157, 143, 35, 42);
 		panel.add(locker45);
 		
@@ -535,271 +530,271 @@ public class Login{
 		panel_7.add(lblNewLabel_3);
 		
 		final JToggleButton locker6 = new JToggleButton("0");
-		locker6.setToolTipText("01");
+		locker6.setToolTipText("6");
 		locker6.setEnabled(false);
 		locker6.setBounds(267, 59, 35, 42);
 		panel.add(locker6);
 		
 		final JToggleButton locker26 = new JToggleButton("0");
-		locker26.setToolTipText("01");
+		locker26.setToolTipText("26");
 		locker26.setEnabled(false);
 		locker26.setBounds(267, 101, 35, 42);
 		panel.add(locker26);
 		
 		final JToggleButton locker46 = new JToggleButton("0");
-		locker46.setToolTipText("01");
+		locker46.setToolTipText("46");
 		locker46.setEnabled(false);
 		locker46.setBounds(267, 143, 35, 42);
 		panel.add(locker46);
 		
 		final JToggleButton locker47 = new JToggleButton("0");
-		locker47.setToolTipText("01");
+		locker47.setToolTipText("47");
 		locker47.setEnabled(false);
 		locker47.setBounds(302, 143, 35, 42);
 		panel.add(locker47);
 		
 		final JToggleButton locker27 = new JToggleButton("0");
-		locker27.setToolTipText("01");
+		locker27.setToolTipText("27");
 		locker27.setEnabled(false);
 		locker27.setBounds(302, 101, 35, 42);
 		panel.add(locker27);
 		
 		final JToggleButton locker7 = new JToggleButton("0");
-		locker7.setToolTipText("01");
+		locker7.setToolTipText("7");
 		locker7.setEnabled(false);
 		locker7.setBounds(302, 59, 35, 42);
 		panel.add(locker7);
 		
 		final JToggleButton locker8 = new JToggleButton("0");
-		locker8.setToolTipText("01");
+		locker8.setToolTipText("8");
 		locker8.setEnabled(false);
 		locker8.setBounds(338, 59, 35, 42);
 		panel.add(locker8);
 		
 		final JToggleButton locker28 = new JToggleButton("0");
-		locker28.setToolTipText("01");
+		locker28.setToolTipText("28");
 		locker28.setEnabled(false);
 		locker28.setBounds(338, 101, 35, 42);
 		panel.add(locker28);
 		
 		final JToggleButton locker48 = new JToggleButton("0");
-		locker48.setToolTipText("01");
+		locker48.setToolTipText("48");
 		locker48.setEnabled(false);
 		locker48.setBounds(338, 143, 35, 42);
 		panel.add(locker48);
 		
 		final JToggleButton locker49 = new JToggleButton("0");
-		locker49.setToolTipText("01");
+		locker49.setToolTipText("49");
 		locker49.setEnabled(false);
 		locker49.setBounds(374, 143, 35, 42);
 		panel.add(locker49);
 		
 		final JToggleButton locker29 = new JToggleButton("0");
-		locker29.setToolTipText("01");
+		locker29.setToolTipText("29");
 		locker29.setEnabled(false);
 		locker29.setBounds(374, 101, 35, 42);
 		panel.add(locker29);
 		
 		final JToggleButton locker9 = new JToggleButton("0");
-		locker9.setToolTipText("01");
+		locker9.setToolTipText("9");
 		locker9.setEnabled(false);
 		locker9.setBounds(374, 59, 35, 42);
 		panel.add(locker9);
 		
 		final JToggleButton locker10 = new JToggleButton("0");
-		locker10.setToolTipText("01");
+		locker10.setToolTipText("10");
 		locker10.setEnabled(false);
 		locker10.setBounds(410, 59, 35, 42);
 		panel.add(locker10);
 		
 		final JToggleButton locker30 = new JToggleButton("0");
-		locker30.setToolTipText("01");
+		locker30.setToolTipText("30");
 		locker30.setEnabled(false);
 		locker30.setBounds(410, 101, 35, 42);
 		panel.add(locker30);
 		
 		final JToggleButton locker50 = new JToggleButton("0");
-		locker50.setToolTipText("01");
+		locker50.setToolTipText("50");
 		locker50.setEnabled(false);
 		locker50.setBounds(410, 143, 35, 42);
 		panel.add(locker50);
 		
 		final JToggleButton locker11 = new JToggleButton("0");
-		locker11.setToolTipText("01");
+		locker11.setToolTipText("11");
 		locker11.setEnabled(false);
 		locker11.setBounds(459, 59, 35, 42);
 		panel.add(locker11);
 		
 		final JToggleButton locker31 = new JToggleButton("0");
-		locker31.setToolTipText("01");
+		locker31.setToolTipText("31");
 		locker31.setEnabled(false);
 		locker31.setBounds(459, 101, 35, 42);
 		panel.add(locker31);
 		
 		final JToggleButton locker51 = new JToggleButton("0");
-		locker51.setToolTipText("01");
+		locker51.setToolTipText("51");
 		locker51.setEnabled(false);
 		locker51.setBounds(459, 143, 35, 42);
 		panel.add(locker51);
 		
 		final JToggleButton locker52 = new JToggleButton("0");
-		locker52.setToolTipText("01");
+		locker52.setToolTipText("52");
 		locker52.setEnabled(false);
 		locker52.setBounds(494, 143, 35, 42);
 		panel.add(locker52);
 		
 		final JToggleButton locker32 = new JToggleButton("0");
-		locker32.setToolTipText("01");
+		locker32.setToolTipText("32");
 		locker32.setEnabled(false);
 		locker32.setBounds(494, 101, 35, 42);
 		panel.add(locker32);
 		
 		final JToggleButton locker12 = new JToggleButton("0");
-		locker12.setToolTipText("01");
+		locker12.setToolTipText("12");
 		locker12.setEnabled(false);
 		locker12.setBounds(494, 59, 35, 42);
 		panel.add(locker12);
 		
 		final JToggleButton locker13 = new JToggleButton("0");
-		locker13.setToolTipText("01");
+		locker13.setToolTipText("13");
 		locker13.setEnabled(false);
 		locker13.setBounds(530, 59, 35, 42);
 		panel.add(locker13);
 		
 		final JToggleButton locker33 = new JToggleButton("0");
-		locker33.setToolTipText("01");
+		locker33.setToolTipText("33");
 		locker33.setEnabled(false);
 		locker33.setBounds(530, 101, 35, 42);
 		panel.add(locker33);
 		
 		final JToggleButton locker53 = new JToggleButton("0");
-		locker53.setToolTipText("01");
+		locker53.setToolTipText("53");
 		locker53.setEnabled(false);
 		locker53.setBounds(530, 143, 35, 42);
 		panel.add(locker53);
 		
 		final JToggleButton locker54 = new JToggleButton("0");
-		locker54.setToolTipText("01");
+		locker54.setToolTipText("54");
 		locker54.setEnabled(false);
 		locker54.setBounds(566, 143, 35, 42);
 		panel.add(locker54);
 		
 		final JToggleButton locker34 = new JToggleButton("0");
-		locker34.setToolTipText("01");
+		locker34.setToolTipText("34");
 		locker34.setEnabled(false);
 		locker34.setBounds(566, 101, 35, 42);
 		panel.add(locker34);
 		
 		final JToggleButton locker14 = new JToggleButton("0");
-		locker14.setToolTipText("01");
+		locker14.setToolTipText("14");
 		locker14.setEnabled(false);
 		locker14.setBounds(566, 59, 35, 42);
 		panel.add(locker14);
 		
 		final JToggleButton locker15 = new JToggleButton("0");
-		locker15.setToolTipText("01");
+		locker15.setToolTipText("15");
 		locker15.setEnabled(false);
 		locker15.setBounds(602, 59, 35, 42);
 		panel.add(locker15);
 		
 		final JToggleButton locker35 = new JToggleButton("0");
-		locker35.setToolTipText("01");
+		locker35.setToolTipText("35");
 		locker35.setEnabled(false);
 		locker35.setBounds(602, 101, 35, 42);
 		panel.add(locker35);
 		
 		final JToggleButton locker55 = new JToggleButton("0");
-		locker55.setToolTipText("01");
+		locker55.setToolTipText("55");
 		locker55.setEnabled(false);
 		locker55.setBounds(602, 143, 35, 42);
 		panel.add(locker55);
 		
 		final JToggleButton locker16 = new JToggleButton("0");
-		locker16.setToolTipText("01");
+		locker16.setToolTipText("16");
 		locker16.setEnabled(false);
 		locker16.setBounds(648, 59, 35, 42);
 		panel.add(locker16);
 		
 		final JToggleButton locker36 = new JToggleButton("0");
-		locker36.setToolTipText("01");
+		locker36.setToolTipText("36");
 		locker36.setEnabled(false);
 		locker36.setBounds(648, 101, 35, 42);
 		panel.add(locker36);
 		
 		final JToggleButton locker56 = new JToggleButton("0");
-		locker56.setToolTipText("01");
+		locker56.setToolTipText("56");
 		locker56.setEnabled(false);
 		locker56.setBounds(648, 143, 35, 42);
 		panel.add(locker56);
 		
 		final JToggleButton locker57 = new JToggleButton("0");
-		locker57.setToolTipText("01");
+		locker57.setToolTipText("57");
 		locker57.setEnabled(false);
 		locker57.setBounds(683, 143, 35, 42);
 		panel.add(locker57);
 		
 		final JToggleButton locker37 = new JToggleButton("0");
-		locker37.setToolTipText("01");
+		locker37.setToolTipText("37");
 		locker37.setEnabled(false);
 		locker37.setBounds(683, 101, 35, 42);
 		panel.add(locker37);
 		
 		final JToggleButton locker17 = new JToggleButton("0");
-		locker17.setToolTipText("01");
+		locker17.setToolTipText("17");
 		locker17.setEnabled(false);
 		locker17.setBounds(683, 59, 35, 42);
 		panel.add(locker17);
 		
 		final JToggleButton locker18 = new JToggleButton("0");
-		locker18.setToolTipText("01");
+		locker18.setToolTipText("18");
 		locker18.setEnabled(false);
 		locker18.setBounds(719, 59, 35, 42);
 		panel.add(locker18);
 		
 		final JToggleButton locker38 = new JToggleButton("0");
-		locker38.setToolTipText("01");
+		locker38.setToolTipText("38");
 		locker38.setEnabled(false);
 		locker38.setBounds(719, 101, 35, 42);
 		panel.add(locker38);
 		
 		final JToggleButton locker58 = new JToggleButton("0");
-		locker58.setToolTipText("01");
+		locker58.setToolTipText("58");
 		locker58.setEnabled(false);
 		locker58.setBounds(719, 143, 35, 42);
 		panel.add(locker58);
 		
 		final JToggleButton locker59 = new JToggleButton("0");
-		locker59.setToolTipText("01");
+		locker59.setToolTipText("59");
 		locker59.setEnabled(false);
 		locker59.setBounds(755, 143, 35, 42);
 		panel.add(locker59);
 		
 		final JToggleButton locker39 = new JToggleButton("0");
-		locker39.setToolTipText("01");
+		locker39.setToolTipText("39");
 		locker39.setEnabled(false);
 		locker39.setBounds(755, 101, 35, 42);
 		panel.add(locker39);
 		
 		final JToggleButton locker19 = new JToggleButton("0");
-		locker19.setToolTipText("01");
+		locker19.setToolTipText("19");
 		locker19.setEnabled(false);
 		locker19.setBounds(755, 59, 35, 42);
 		panel.add(locker19);
 		
 		final JToggleButton locker20 = new JToggleButton("0");
-		locker20.setToolTipText("01");
+		locker20.setToolTipText("20");
 		locker20.setEnabled(false);
 		locker20.setBounds(791, 59, 35, 42);
 		panel.add(locker20);
 		
 		final JToggleButton locker40 = new JToggleButton("0");
-		locker40.setToolTipText("01");
+		locker40.setToolTipText("40");
 		locker40.setEnabled(false);
 		locker40.setBounds(791, 101, 35, 42);
 		panel.add(locker40);
 		
 		final JToggleButton locker60 = new JToggleButton("0");
-		locker60.setToolTipText("01");
+		locker60.setToolTipText("60");
 		locker60.setEnabled(false);
 
 		locker60.setBounds(791, 143, 35, 42);
@@ -845,19 +840,19 @@ public class Login{
 		JDateChooser dateChooser_1 = new JDateChooser();
 		dateChooser_1.setBounds(944, 324, 296, 35);
 		mainPage.add(dateChooser_1);
-		JSpinner spinner = new JSpinner(sm);					// 기존 j스피너 () 안에 sm 추가 후 위 아래 코드 추가함.
-		JSpinner.DateEditor de = new JSpinner.DateEditor(spinner, "HH:mm");
-		spinner.setEditor(de);
+		final JSpinner startSpin = new JSpinner(sm);					// 기존 j스피너 () 안에 sm 추가 후 위 아래 코드 추가함.
+		JSpinner.DateEditor de_startSpin = new JSpinner.DateEditor(startSpin, "HH:mm");
+		startSpin.setEditor(de_startSpin);
 		
-		spinner.setBounds(944, 247, 296, 35);
-		mainPage.add(spinner);
-		JSpinner spinner_1 = new JSpinner(dm);
-		JSpinner.DateEditor ge = new JSpinner.DateEditor(spinner_1, "HH:mm");
-		spinner_1.setEditor(ge);
+		startSpin.setBounds(944, 247, 296, 35);
+		mainPage.add(startSpin);
+		JSpinner endSpin = new JSpinner(dm);
+		JSpinner.DateEditor de_endSpin = new JSpinner.DateEditor(endSpin, "HH:mm");
+		endSpin.setEditor(de_endSpin);
 		
 		
-		spinner_1.setBounds(944, 371, 296, 35);
-		mainPage.add(spinner_1);
+		endSpin.setBounds(944, 371, 296, 35);
+		mainPage.add(endSpin);
 		
 		String[] s = Locker.getLockerNum();
 
@@ -871,40 +866,72 @@ public class Login{
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-//				Date date = dateChooser.getDate(); 
-//				String strDate = DateFormat.getDateInstance().format(date);
-//				System.out.println(strDate);
+				startDate  = ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText();
+				System.out.println(startDate);
+				endDate  = ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText();
+				System.out.println(endDate);
 				
 				String locknum = comboBox.getSelectedItem().toString();
 				int stringToint = Integer.parseInt(locknum);
 				
-				if(Locker.getLockerState(stringToint) == 1) {
+				
+				if(startDate.equals("")&&endDate.equals("")) {
+					JOptionPane.showMessageDialog(null, "대여날짜를 먼저 선택해주세요.");
+					
+				} else {
+					if(Locker.getLockerState(stringToint) == 1) {
 					JOptionPane.showMessageDialog(null, "선택한 사물함은 이미 대여중입니다.");
 				} else if(Locker.getLockerState(stringToint) != 1){
 					if(student.checkEmpty(idd) == 1) {
 						JOptionPane.showMessageDialog(null, "이미 대여중인 사물함이 있습니다.\n 먼저 반납해주세요.");
 					}
 					if(student.checkEmpty(idd) == 0) {
-						Locker.getLent(stringToint, student.getId(idd,stringToint));
+						Locker.getLent(stringToint, student.getId(idd,stringToint), startDate, endDate);
 						JOptionPane.showMessageDialog(null, "사물함을 대여하였습니다.");
+						
+						startDate = "";
+						endDate = "";
+						data = Locker.getLockers();
+						model = new DefaultTableModel(data,headers);
+						
+						
+						
+						mylocker = student.rtnName(idd);
+						
+						data2 = Locker.getMyLocker(mylocker);
+						
+						model2 = new DefaultTableModel(data2,headers);
+						
+						allStateTable.repaint();
+						allStateTable.revalidate();
+						model.fireTableDataChanged();
+						allStateTable.setModel(model);
+						
+						myStateTable.repaint();
+						myStateTable.revalidate();
+						model2.fireTableDataChanged();
+						myStateTable.setModel(model2);
+					}
+					
 				}
+				
+				
+				
+				
 					
 				}
 
-//				data = Locker.getLockers();
-				
-				
-				
-//				DefaultTableModel model = (DefaultTableModel) allStateTable.getModel();
-//				model.setDataVector(data, headers);
-//				DefaultTableModel model = new DefaultTableModel(data,headers);
-//				JTable table = new JTable(model);
+
 				
 				allStateTable.repaint();
 				allStateTable.revalidate();
-				
 				model.fireTableDataChanged();
 				allStateTable.setModel(model);
+				
+				myStateTable.repaint();
+				myStateTable.revalidate();
+				model2.fireTableDataChanged();
+				myStateTable.setModel(model2);
 
 				
 
@@ -1286,6 +1313,26 @@ public class Login{
 				if(student.checkEmpty(idd) == 1) {
 					Locker.getRtnL(student.getRtnS(idd));
 					JOptionPane.showMessageDialog(null, "사물함을 반납하였습니다.");
+					
+					mylocker = student.rtnName(idd);
+					data = Locker.getLockers();
+					
+					data2 = Locker.getMyLocker(mylocker);
+					model = new DefaultTableModel(data,headers);
+					model2 = new DefaultTableModel(data2,headers);
+					
+					allStateTable.repaint();
+					allStateTable.revalidate();
+
+					model.fireTableDataChanged();
+					allStateTable.setModel(model);
+					
+					myStateTable.repaint();
+					myStateTable.revalidate();
+
+					model2.fireTableDataChanged();
+					myStateTable.setModel(model2);
+					
 				}
 				
 				if(Locker.getLockerState(1)==1) {
@@ -1660,6 +1707,15 @@ public class Login{
 		refreshBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				startDate2 = startSpin.getValue().toString();
+
+//				startDate2 = (String)startSpin.getSelectedItem();
+				
+//				System.out.println(startDate2);
+//				endDate2 = (String)startSpin.getValue();
+				System.out.println(endDate2);
+				
+				
 				if(Locker.getLockerState(1)==1) {
 					locker1.setBackground(Color.red);
 				} else {
@@ -2022,7 +2078,7 @@ public class Login{
 			}
 		});
 		
-		String mylocker = student.rtnName(idd);
+		mylocker = student.rtnName(idd);
 		System.out.println(idd);
 		System.out.println(mylocker);
 		data = locker.getLockers();

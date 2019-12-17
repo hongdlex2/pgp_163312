@@ -39,13 +39,17 @@ public class Locker {
 	}
 	
 	
-	public static void getLent(int lockernum, String name ) {
+	public static void getLent(int lockernum, String name ,String startdate, String enddate) {
 		try {
 			Connection con = getConnection();
 			PreparedStatement insertState = con.prepareStatement("UPDATE locker SET state = '대여중' WHERE lockernum='"+lockernum+"'" );
 			PreparedStatement insertBorrower = con.prepareStatement("UPDATE locker SET borrower = '"+name+"' WHERE lockernum='"+lockernum+"'" );
+			PreparedStatement insertStart = con.prepareStatement("UPDATE locker SET startdate = '"+startdate+"' WHERE lockernum='"+lockernum+"'" );
+			PreparedStatement insertEnd = con.prepareStatement("UPDATE locker SET enddate = '"+enddate+"' WHERE lockernum='"+lockernum+"'" );
 				insertState.executeUpdate();
 				insertBorrower.executeUpdate();
+				insertStart.executeUpdate();
+				insertEnd.executeUpdate();
 //				System.out.println("회원정보가 등록되었습니다.");
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -57,10 +61,15 @@ public class Locker {
 		try {
 			Connection con = getConnection();
 			PreparedStatement resetState = con.prepareStatement("UPDATE locker SET state = '대여가능' WHERE lockernum='"+num+"'" );
-			resetState.executeUpdate();
 			PreparedStatement resetBorrower = con.prepareStatement("UPDATE locker SET borrower = null WHERE lockernum='"+num+"'" );
-			resetBorrower.executeUpdate();
+			PreparedStatement resetStartdate = con.prepareStatement("UPDATE locker SET startdate = null WHERE lockernum='"+num+"'" );
+			PreparedStatement resetEnddate = con.prepareStatement("UPDATE locker SET enddate = null WHERE lockernum='"+num+"'" );
 			
+			
+			resetBorrower.executeUpdate();
+			resetState.executeUpdate();
+			resetStartdate.executeUpdate();
+			resetEnddate.executeUpdate();
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -131,6 +140,7 @@ public class Locker {
 	
 	public static int getLockerState(int num) {
 		String lent = "대여중";
+		int numb = 0;
 		try {
 			Connection con = getConnection();
 			PreparedStatement statement = con.prepareStatement("Select state From locker Where lockernum="+num);
@@ -143,17 +153,21 @@ public class Locker {
 					if(lockerState.equals(lent)) {
 //						System.out.println(lockerState);
 //						System.out.println("리턴 1을 합니다.");
-						return 1;
+//						return 1;
+						numb = 1;
+						break;		
 					} else {
 //						System.out.println(lockerState);
 //						System.out.println("리턴 0을 합니다.");
-						return 0;
+//						return 0;
+						numb = 0;
+						break;
 					}		
 			}
 			con.close();
 			statement.close();
 			results.close();
-			
+			return numb;
 		} catch (Exception e) {
 			
 			e.printStackTrace();
